@@ -1,0 +1,2553 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>地すべり業務支援システム | 写真帳票＆NetLG-301N設置チェックシート</title>
+  <style>
+    :root {
+      --primary: #1e3a8a; --primary-hover: #1d4ed8; --accent: #0284c7;
+      --success: #16a34a; --danger: #dc2626; --warning: #d97706;
+      --bg-main: #f1f5f9; --bg-card: #ffffff; --border: #cbd5e1;
+      --text-main: #0f172a; --text-muted: #475569; --radius: 10px;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.06);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      background-color: var(--bg-main); color: var(--text-main); line-height: 1.45; padding-bottom: 85px;
+    }
+    header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); color: #fff;
+      padding: 11px 18px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+    .header-inner { max-width: 1440px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand-badge { background: #38bdf8; color: #0f172a; font-weight: 700; font-size: 0.72rem; padding: 3px 8px; border-radius: 6px; }
+    .brand h1 { font-size: 1.08rem; font-weight: 700; }
+    .header-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .save-status { display: flex; align-items: center; gap: 7px; font-size: 0.76rem; background: rgba(255,255,255,0.14); padding: 5px 11px; border-radius: 20px; }
+    .status-dot { width: 9px; height: 9px; border-radius: 50%; background-color: #4ade80; box-shadow: 0 0 8px #4ade80; }
+
+    /* Top Module Navigation */
+    .module-nav { background: #fff; border-bottom: 1px solid var(--border); padding: 0 16px; position: sticky; top: 52px; z-index: 95; }
+    .module-nav-inner { max-width: 1440px; margin: 0 auto; display: flex; gap: 6px; overflow-x: auto; }
+    .module-tab {
+      padding: 11px 16px; font-size: 0.88rem; font-weight: 700; color: var(--text-muted);
+      border-bottom: 3px solid transparent; cursor: pointer; white-space: nowrap; display: flex; align-items: center; gap: 6px;
+      background: none; border-top: none; border-left: none; border-right: none; font-family: inherit;
+    }
+    .module-tab.active { color: var(--primary); border-bottom-color: var(--primary); background: #f8fafc; }
+
+    .container { max-width: 1440px; margin: 16px auto; padding: 0 14px; display: grid; grid-template-columns: 400px 1fr; gap: 18px; align-items: start; }
+    .container-single { max-width: 1440px; margin: 16px auto; padding: 0 14px; }
+    @media (max-width: 1024px) { .container { grid-template-columns: 1fr; } }
+
+    .panel { background: var(--bg-card); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--border); padding: 15px; margin-bottom: 14px; }
+    .panel-title { font-size: 0.95rem; font-weight: 700; margin-bottom: 11px; padding-bottom: 7px; border-bottom: 2px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; color: var(--primary); flex-wrap: wrap; gap: 6px; }
+
+    .form-group { margin-bottom: 10px; }
+    .form-group label { display: block; font-size: 0.78rem; font-weight: 600; margin-bottom: 3px; color: var(--text-muted); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+    .form-row-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+
+    input[type="text"], input[type="number"], input[type="date"], input[type="month"], input[type="time"], select, textarea {
+      width: 100%; padding: 8px 10px; font-size: 0.86rem; font-family: inherit;
+      border: 1px solid var(--border); border-radius: 7px; background: #f8fafc; color: var(--text-main);
+    }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); background: #fff; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+      padding: 9px 14px; font-size: 0.85rem; font-weight: 700; font-family: inherit;
+      border-radius: 8px; border: none; cursor: pointer; transition: all 0.15s; user-select: none;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-accent { background: var(--accent); color: #fff; }
+    .btn-success { background: var(--success); color: #fff; }
+    .btn-danger { background: #fee2e2; color: var(--danger); }
+    .btn-outline { background: #fff; border: 1px solid var(--border); color: var(--text-main); }
+    .btn-sm { padding: 5px 9px; font-size: 0.75rem; border-radius: 6px; }
+
+    .purpose-selector-box { background: #eff6ff; border: 2px solid #93c5fd; border-radius: 9px; padding: 10px; margin-bottom: 12px; }
+    .purpose-selector-box label { color: var(--primary); font-weight: 700; font-size: 0.82rem; margin-bottom: 5px; display: block; }
+    .purpose-selector-box select { background: #fff; font-weight: 700; border-color: var(--primary); color: var(--primary); }
+
+    .upload-zone {
+      display: block; border: 2px dashed var(--accent); background: #f0f9ff; border-radius: var(--radius);
+      padding: 18px 12px; text-align: center; cursor: pointer; margin-bottom: 10px;
+    }
+    .upload-zone:hover, .upload-zone.dragover { background: #e0f2fe; }
+
+    .categories-wrapper { max-height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+    .category-block { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 9px; }
+    .category-header { font-size: 0.8rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; display: flex; justify-content: space-between; border-left: 3px solid var(--accent); padding-left: 6px; }
+    .chip-container { display: flex; flex-wrap: wrap; gap: 5px; }
+    .caption-chip {
+      display: inline-flex; align-items: center; gap: 4px; background: #fff; border: 1px solid #cbd5e1;
+      border-radius: 14px; padding: 4px 9px; font-size: 0.75rem; font-weight: 600; cursor: pointer;
+    }
+    .caption-chip:hover { background: #e0f2fe; border-color: var(--accent); }
+    .caption-chip.has-rule { border-color: #93c5fd; background: #f0f9ff; }
+    .caption-chip .rule-badge { font-size: 0.66rem; background: #dbeafe; color: #1e40af; padding: 1px 5px; border-radius: 8px; }
+    .caption-chip .del-chip { color: #94a3b8; font-weight: bold; padding-left: 3px; }
+    .caption-chip .del-chip:hover { color: var(--danger); }
+
+    .rule-alert-banner { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; font-size: 0.75rem; padding: 7px 9px; border-radius: 6px; margin-top: 8px; }
+    .export-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
+
+    .workspace-header {
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;
+      margin-bottom: 14px; background: #fff; padding: 10px 14px; border-radius: var(--radius); border: 1px solid var(--border);
+    }
+    .view-switcher { display: flex; flex-wrap: wrap; background: #f1f5f9; padding: 4px; border-radius: 8px; gap: 4px; }
+    .view-btn { padding: 7px 12px; border: none; background: transparent; border-radius: 6px; font-size: 0.8rem; font-weight: 700; color: var(--text-muted); cursor: pointer; }
+    .view-btn.active { background: #fff; color: var(--primary); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+
+    .checklist-capture-container { display: flex; flex-direction: column; gap: 14px; }
+    .checklist-cat-card { background: #fff; border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; }
+    .checklist-cat-title { background: #1e3a8a; color: #fff; padding: 9px 14px; font-weight: 700; font-size: 0.88rem; display: flex; justify-content: space-between; }
+    .checklist-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 14px; border-bottom: 1px solid #e2e8f0; }
+    .checklist-row.done-row { background: #f0fdf4; }
+    .checklist-thumbs { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    .mini-thumb { width: 64px; height: 48px; object-fit: cover; border-radius: 4px; border: 2px solid var(--success); }
+
+    .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+    .photo-card { background: #fff; border-radius: var(--radius); border: 2px solid var(--border); overflow: hidden; display: flex; flex-direction: column; }
+    .photo-card.active-card { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(2,132,199,0.2); }
+    .photo-card-header { padding: 7px 10px; background: #f8fafc; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; font-weight: 700; }
+    .photo-num-badge { background: var(--primary); color: #fff; padding: 2px 7px; border-radius: 10px; font-size: 0.72rem; }
+    .canvas-wrapper { width: 100%; aspect-ratio: 4/3; background: #e2e8f0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .canvas-wrapper img { width: 100%; height: 100%; object-fit: contain; }
+    .photo-card-body { padding: 10px; display: flex; flex-direction: column; gap: 6px; }
+    .card-note-box { font-size: 0.72rem; padding: 4px 7px; border-radius: 4px; background: #f0f9ff; color: #0369a1; border-left: 3px solid #0284c7; display: none; }
+
+    .sheets-container { display: flex; flex-direction: column; gap: 24px; align-items: center; }
+    .sheet-preview-card { background: #fff; width: 100%; max-width: 940px; border-radius: 8px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); border: 1px solid #cbd5e1; overflow: hidden; }
+    .sheet-preview-card.portrait-card { max-width: 660px; }
+    .sheet-preview-bar { background: #1e293b; color: #fff; font-size: 0.78rem; font-weight: 600; padding: 6px 12px; display: flex; justify-content: space-between; }
+    .sheet-preview-img { width: 100%; height: auto; display: block; }
+    .empty-state { background: #fff; border-radius: var(--radius); border: 1px solid var(--border); padding: 45px 18px; text-align: center; color: var(--text-muted); }
+
+    /* =========================================================================
+     * Module 2: NetLG-301N Specific Styles
+     * ========================================================================= */
+    .logger-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+    @media (max-width: 1024px) { .logger-grid { grid-template-columns: 1fr; } }
+
+    .step-list { display: flex; flex-direction: column; gap: 8px; }
+    .step-item {
+      display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px;
+      background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; transition: background 0.15s;
+    }
+    .step-item.checked { background: #f0fdf4; border-color: #86efac; }
+    .step-item input[type="checkbox"] { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--success); cursor: pointer; flex-shrink: 0; }
+    .step-num { background: var(--primary); color: #fff; font-size: 0.7rem; font-weight: 700; padding: 2px 6px; border-radius: 6px; flex-shrink: 0; margin-top: 2px; }
+    .step-content { flex: 1; font-size: 0.84rem; }
+    .step-title { font-weight: 700; color: var(--text-main); }
+    .step-sub { font-size: 0.76rem; color: var(--text-muted); margin-top: 3px; }
+
+    .packing-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 7px; }
+    .packing-chip {
+      display: flex; align-items: center; gap: 7px; padding: 7px 10px;
+      background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 7px; font-size: 0.8rem; font-weight: 600; cursor: pointer;
+    }
+    .packing-chip.checked { background: #dcfce7; border-color: #22c55e; color: #14532d; }
+    .packing-chip input { width: 16px; height: 16px; accent-color: var(--success); }
+
+    .calc-box { background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%); border: 2px solid #93c5fd; border-radius: 10px; padding: 14px; }
+    .calc-result-card { background: #fff; border: 1px solid #bae6fd; border-radius: 8px; padding: 10px 12px; margin-top: 10px; }
+    .badge-ok { background: #dcfce7; color: #166534; border: 1px solid #86efac; padding: 3px 8px; border-radius: 6px; font-weight: 700; font-size: 0.78rem; }
+    .badge-ng { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; padding: 3px 8px; border-radius: 6px; font-weight: 700; font-size: 0.78rem; }
+
+    /* Table Styles for Strain 30ch & Alarms */
+    .table-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; }
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; min-width: 720px; }
+    .data-table th, .data-table td { border: 1px solid #cbd5e1; padding: 4px 6px; text-align: center; }
+    .data-table th { background: #f1f5f9; font-weight: 700; color: var(--text-main); }
+    .data-table input { padding: 4px 6px; font-size: 0.8rem; text-align: right; border-radius: 4px; }
+    .data-table input.text-left { text-align: left; }
+
+    /* Modal & Loading */
+    .modal-backdrop { position: fixed; inset: 0; background: rgba(15,23,42,0.65); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 16px; }
+    .modal-card { background: #fff; width: 100%; max-width: 480px; border-radius: 12px; box-shadow: 0 20px 35px rgba(0,0,0,0.25); overflow: hidden; max-height: 90vh; display: flex; flex-direction: column; }
+    .modal-header { background: var(--primary); color: #fff; padding: 12px 16px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
+    .modal-body { padding: 16px; overflow-y: auto; }
+    .modal-rule-box { background: #eff6ff; border-left: 4px solid var(--primary); padding: 9px 11px; font-size: 0.82rem; color: #1e3a8a; margin-bottom: 12px; }
+    .validation-feedback { margin-top: 8px; padding: 7px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; display: none; }
+    .validation-feedback.ok { display: block; background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+    .validation-feedback.ng { display: block; background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+    .modal-footer { padding: 10px 16px; background: #f8fafc; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 8px; }
+
+    .loading-overlay { position: fixed; inset: 0; background: rgba(15,23,42,0.72); z-index: 9999; display: none; flex-direction: column; align-items: center; justify-content: center; color: #fff; gap: 12px; }
+    .spinner { width: 44px; height: 44px; border: 5px solid rgba(255,255,255,0.25); border-top-color: #38bdf8; border-radius: 50%; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .mobile-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 1px solid var(--border); padding: 9px 12px; z-index: 90; box-shadow: 0 -2px 10px rgba(0,0,0,0.08); gap: 6px; }
+    @media (max-width: 768px) {
+      .mobile-bar { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+      .form-row, .form-row-3 { grid-template-columns: 1fr; }
+    }
+
+    /* Print Stylesheet for NetLG-301N Checksheet */
+    #printChecksheetArea { display: none; }
+    @media print {
+      body * { visibility: hidden; }
+      header, .module-nav, main, .mobile-bar, .modal-backdrop, .loading-overlay { display: none !important; }
+      #printChecksheetArea, #printChecksheetArea * { visibility: visible; }
+      #printChecksheetArea {
+        display: block !important; position: absolute; left: 0; top: 0; width: 100%;
+        font-family: "MS PGothic", "Hiragino Kaku Gothic ProN", sans-serif; color: #000; font-size: 9pt; line-height: 1.25;
+      }
+      .print-table { width: 100%; border-collapse: collapse; margin-bottom: 6px; }
+      .print-table th, .print-table td { border: 1px solid #000; padding: 2px 4px; font-size: 8pt; }
+      .print-table th { background: #f0f0f0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="spinner"></div>
+    <div id="loadingText" style="font-weight:700;">処理中...</div>
+  </div>
+
+  <!-- Hidden file input for Checklist Direct Camera Capture -->
+  <input type="file" id="directItemFileInput" accept="image/*" multiple style="display:none;">
+
+  <!-- Measurement / Year Input Modal -->
+  <div id="valueModal" class="modal-backdrop">
+    <div class="modal-card">
+      <div class="modal-header">
+        <span id="modalTitle">計測値・製造年の入力</span>
+        <button type="button" id="modalCloseX" style="background:none;border:none;color:#fff;font-size:1.2rem;cursor:pointer;">✕</button>
+      </div>
+      <div class="modal-body">
+        <div id="modalRuleBox" class="modal-rule-box"></div>
+        <div class="form-group">
+          <label id="modalInputLabel" for="modalValueInput">数値を入力してください</label>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <input type="number" id="modalValueInput" step="any" inputmode="decimal" style="font-size:1.1rem; font-weight:700;">
+            <span id="modalUnitSpan" style="font-weight:700;">cm</span>
+          </div>
+        </div>
+        <div id="modalValidationMsg" class="validation-feedback"></div>
+        <div style="margin-top:10px; font-size:0.8rem; color:var(--text-muted);">
+          反映後プレビュー: <strong id="modalPreviewCaption" style="color:var(--text-main);"></strong>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline btn-sm" id="modalSkipBtn">〇のままセット</button>
+        <button type="button" class="btn btn-primary btn-sm" id="modalConfirmBtn">この値で反映する</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- iPhone Guide Modal -->
+  <div id="iphoneGuideModal" class="modal-backdrop">
+    <div class="modal-card" style="max-width:560px;">
+      <div class="modal-header">
+        <span>⛰️ 山間現場（圏外）のiPhone活用 ➔ 事務所PC即印刷ガイド</span>
+        <button type="button" id="closeIphoneGuideX" style="background:none;border:none;color:#fff;font-size:1.2rem;cursor:pointer;">✕</button>
+      </div>
+      <div class="modal-body" style="font-size:0.84rem; line-height:1.55;">
+        <div style="background:#f0fdf4; border:2px solid #86efac; border-radius:8px; padding:10px 12px; margin-bottom:10px;">
+          <strong style="color:#166534;">✅ 方法①：無料アプリ「Documents by Readdle」に入れる（完全オフライン）</strong>
+          <p style="margin-top:4px;">App Storeの無料アプリ『Documents』内にこのHTMLファイルを保存して開けば、電波ゼロの山奥でも写真撮影・NetLG-301Nチェックシート記入・データ自動保存が100%動作します。</p>
+        </div>
+        <div style="background:#f0f9ff; border:1px solid #bae6fd; border-radius:8px; padding:10px 12px;">
+          <strong style="color:#0369a1;">🌐 方法②：Netlify Drop等でURL化してSafari「ホーム画面に追加」</strong>
+          <p style="margin-top:4px;">事務所で <code>app.netlify.com/drop</code> 等にHTMLをドロップしてURL化し、Safariで「ホーム画面に追加」しておけばアプリ同様に現場で使えます。</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary btn-sm" id="closeIphoneGuideBtn">閉じる</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Header -->
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-badge">完全オフライン稼働・自動永続保存</span>
+        <h1>地すべり業務支援システム</h1>
+      </div>
+      <div class="header-right">
+        <button type="button" class="btn btn-outline btn-sm" id="openIphoneGuideBtn" style="background:rgba(255,255,255,0.16); color:#fff; border-color:rgba(255,255,255,0.35);">
+          ⛰️ 山間現場(iPhone)活用ガイド
+        </button>
+        <div class="save-status" title="IndexedDB＋localStorageの二重バックアップで入力データを永久保護します">
+          <span class="status-dot" id="saveDot"></span>
+          <span id="saveStatusText">自動保存済 (二重保護稼働中)</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Module Switcher Tabs -->
+  <nav class="module-nav">
+    <div class="module-nav-inner">
+      <button type="button" class="module-tab active" id="tabModulePhoto">
+        📷 ① 現場写真まとめ・点検帳票出力ツール
+      </button>
+      <button type="button" class="module-tab" id="tabModuleLogger">
+        📟 ② NetLG-301N 設置作業手順＆チェックシート記録
+      </button>
+    </div>
+  </nav>
+
+  <!-- =========================================================================
+       MODULE 1: 現場写真まとめ・帳票出力ツール
+       ========================================================================= -->
+  <main id="modulePhotoContainer" class="container">
+    <aside>
+      <section class="panel">
+        <div class="panel-title">
+          <span>1. 現場写真の一括追加</span>
+          <span id="photoCountBadge" style="font-size:0.8rem; color:var(--accent);">0 枚</span>
+        </div>
+        <label for="fileInput" class="upload-zone" id="dropZone">
+          <span class="upload-zone-icon">📸</span>
+          <div class="upload-zone-title">写真を複数選択 または ドラッグ＆ドロップ</div>
+          <div class="upload-zone-sub">全選択で何十枚でも一括読込対応 (iPhone/PC)</div>
+        </label>
+        <input type="file" id="fileInput" accept="image/*" multiple style="display:none;">
+        <div style="display:flex; gap:8px;">
+          <button type="button" class="btn btn-outline btn-sm" id="loadSampleBtn" style="flex:1;">🧪 サンプル(4枚)生成</button>
+          <button type="button" class="btn btn-danger btn-sm" id="clearAllPhotosBtn">🗑️ 全クリア</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title">
+          <span>2. 用途選択・点検キャプション候補</span>
+          <button type="button" class="btn btn-outline btn-sm" id="resetCandidatesBtn">初期値に戻す</button>
+        </div>
+        <div class="purpose-selector-box">
+          <label for="purposeSelect">📋 点検・写真の用途を選択</label>
+          <select id="purposeSelect">
+            <option value="boring_checklist">② 調査ボーリング 点検チェックリスト（支店内）</option>
+            <option value="netlg_install">③ 地下水位計・パイプ歪計 設置（NetLG-301N）</option>
+            <option value="safety_patrol">① 安全衛生自主点検（支社安全パトロールなど）</option>
+          </select>
+        </div>
+        <div class="categories-wrapper" id="categoriesWrapper"></div>
+        <div id="activeRuleBanner" class="rule-alert-banner" style="display:none;"></div>
+        <div style="margin-top:10px; padding-top:8px; border-top:1px dashed var(--border);">
+          <div style="display:flex; gap:5px;">
+            <select id="newCandidateCatSelect" style="width:42%; padding:5px; font-size:0.78rem;"></select>
+            <input type="text" id="newCandidateInput" placeholder="候補追加 (改行は / )" style="flex:1; padding:5px 8px; font-size:0.8rem;">
+            <button type="button" class="btn btn-primary btn-sm" id="addCandidateBtn">追加</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title"><span>3. A4用紙向き・割り付け・書式設定</span></div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="pageOrientation">A4用紙の向き</label>
+            <select id="pageOrientation">
+              <option value="landscape">A4 横向き (標準)</option>
+              <option value="portrait">A4 縦向き</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="layoutMode">1ページの割り付け枚数</label>
+            <select id="layoutMode">
+              <option value="4">4枚割り付け (2列×2段)</option>
+              <option value="2-h">2枚割り付け (左右並び)</option>
+              <option value="2-v">2枚割り付け (上下並び)</option>
+              <option value="1">1枚割り付け (大判)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="captionStyle">キャプション位置</label>
+            <select id="captionStyle">
+              <option value="overlay-bl">写真内 左下白枠 (標準)</option>
+              <option value="overlay-br">写真内 右下白枠</option>
+              <option value="below">写真の下部 (枠外)</option>
+              <option value="none">なし</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="boxWidthMode">白枠の横幅</label>
+            <select id="boxWidthMode">
+              <option value="auto">文字長さに自動調整</option>
+              <option value="wide">広め (最小42%確保)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="fontSizeScale">文字大きさ (<span id="fontSizeVal">標準 100%</span>)</label>
+          <input type="range" id="fontSizeScale" min="60" max="160" step="5" value="100" style="width:100%;">
+        </div>
+        <div class="form-group" style="margin-bottom:0;">
+          <label for="projectTitle">ページ上部タイトル（空欄なら写真のみ最大化配置）</label>
+          <input type="text" id="projectTitle" placeholder="空欄推奨（入力時のみ上部印字）">
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title"><span>4. 帳票出力・全データ統合バックアップ</span></div>
+        <div class="export-grid">
+          <button type="button" class="btn btn-primary" id="exportWordBtn">📘 Word (.docx)</button>
+          <button type="button" class="btn btn-accent" id="exportPdfBtn">📕 PDF (.pdf)</button>
+        </div>
+        <hr style="border:none; border-top:1px solid var(--border); margin:12px 0;">
+        <div style="font-size:0.76rem; font-weight:700; color:var(--text-muted); margin-bottom:5px;">
+          🔄 写真＋NetLG-301N記録の一括保存・PC引継ぎ (.json)
+        </div>
+        <div class="export-grid">
+          <button type="button" class="btn btn-outline btn-sm" id="exportJsonBtn">💾 全データ保存</button>
+          <label for="importJsonInput" class="btn btn-outline btn-sm" style="cursor:pointer;">📂 データ読込</label>
+          <input type="file" id="importJsonInput" accept=".json" style="display:none;">
+        </div>
+      </section>
+    </aside>
+
+    <section>
+      <div class="workspace-header">
+        <div class="view-switcher">
+          <button type="button" class="view-btn active" id="viewEditBtn">🛠️ 写真一覧・個別編集</button>
+          <button type="button" class="view-btn" id="viewChecklistBtn">📋 現場チェックリスト順 撮影モード</button>
+          <button type="button" class="view-btn" id="viewPreviewBtn">📄 A4仕上がりプレビュー</button>
+        </div>
+        <div style="font-size:0.8rem; color:var(--text-muted);" id="pageSummaryText">全 0 枚</div>
+      </div>
+
+      <div id="editViewContainer"><div id="photoGrid" class="photo-grid"></div></div>
+
+      <div id="checklistViewContainer" style="display:none;">
+        <div class="panel" style="background:#eff6ff; border-color:#93c5fd; margin-bottom:14px;">
+          <div style="font-weight:700; color:var(--primary); font-size:0.88rem;">⛰️ 山間現場向け：点検項目ごとのダイレクト撮影モード</div>
+          <div style="font-size:0.78rem; color:#1e3a8a;">各項目の「📷 撮影/写真選択」を押すと、そのキャプションが自動セットされた状態で写真が登録されます。</div>
+        </div>
+        <div id="checklistCaptureList" class="checklist-capture-container"></div>
+      </div>
+
+      <div id="previewViewContainer" style="display:none;"><div id="sheetsContainer" class="sheets-container"></div></div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       MODULE 2: オサシテクノス NetLG-301N 設置作業手順＆チェックシート記録ツール
+       ========================================================================= -->
+  <main id="moduleLoggerContainer" class="container-single" style="display:none;">
+    <!-- Top Action & Sub-navigation Bar -->
+    <div class="workspace-header" style="margin-bottom:16px;">
+      <div class="view-switcher">
+        <button type="button" class="view-btn active" id="loggerSubTabWorkflow">✅ 1. 事前準備・持参物・現場作業手順</button>
+        <button type="button" class="view-btn" id="loggerSubTabSheet">📝 2. 設置チェックシート記入・自動計算</button>
+        <button type="button" class="view-btn" id="loggerSubTabStrain">📊 3. ひずみ30ch抵抗・警報設定</button>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button type="button" class="btn btn-primary btn-sm" id="printChecksheetBtn">🖨️ チェックシートをA4印刷 / PDF保存</button>
+        <button type="button" class="btn btn-outline btn-sm" id="exportLoggerJsonBtn">💾 記録をJSON保存</button>
+        <button type="button" class="btn btn-danger btn-sm" id="resetLoggerBtn">🗑️ 記入クリア</button>
+      </div>
+    </div>
+
+    <!-- SUB-VIEW 1: 事前準備・荷物チェック・現場手順 -->
+    <div id="loggerViewWorkflow" class="logger-grid">
+      <div>
+        <!-- 事前にやること -->
+        <section class="panel">
+          <div class="panel-title">
+            <span>🏢 【事前にやること】（出発前準備）</span>
+            <span id="prepProgressBadge" style="font-size:0.78rem; color:var(--accent);">0 / 3 完了</span>
+          </div>
+          <div id="prepStepList" class="step-list"></div>
+        </section>
+
+        <!-- 荷物をチェック -->
+        <section class="panel">
+          <div class="panel-title">
+            <span>🧰 【荷物をチェック】（忘れ物防止16品目）</span>
+            <div style="display:flex; gap:6px; align-items:center;">
+              <span id="packProgressBadge" style="font-size:0.78rem; color:var(--success);">0 / 16</span>
+              <button type="button" class="btn btn-outline btn-sm" id="checkAllPackBtn">全チェック</button>
+            </div>
+          </div>
+          <div id="packingGrid" class="packing-grid"></div>
+        </section>
+      </div>
+
+      <!-- 現場作業手順 -->
+      <div>
+        <section class="panel">
+          <div class="panel-title">
+            <span>⛰️ 【現場作業手順】（NetLG-301N・パイプ歪み計・水圧式水位計）</span>
+            <span id="fieldStepProgressBadge" style="font-size:0.78rem; color:var(--primary);">0 / 16 完了</span>
+          </div>
+          <p style="font-size:0.76rem; color:var(--text-muted); margin-bottom:10px;">
+            💡 各手順をタップしてチェックできます。写真撮影ステップの<strong>「📷 黒板セットして撮影」</strong>を押すと、指定の電子黒板キャプション（2行）が自動セットされてカメラ/写真選択が起動します。
+          </p>
+          <div id="fieldStepList" class="step-list"></div>
+        </section>
+      </div>
+    </div>
+
+    <!-- SUB-VIEW 2: 設置チェックシート（基本情報・水位計算図解・機器設定） -->
+    <div id="loggerViewSheet" style="display:none;">
+      <div class="logger-grid">
+        <!-- Left Column: Header, Logger, Sensor, Basic Config -->
+        <div>
+          <section class="panel">
+            <div class="panel-title"><span>📍 地点・実施日・観測方式</span></div>
+            <div class="form-row-3">
+              <div class="form-group"><label>地点番号 (No.)</label><input type="text" data-lg="siteNo" placeholder="例: B-1"></div>
+              <div class="form-group"><label>地点名</label><input type="text" data-lg="siteName" placeholder="例: 〇〇地区"></div>
+              <div class="form-group"><label>天候</label><input type="text" data-lg="weather" placeholder="例: 晴"></div>
+            </div>
+            <div class="form-row-3">
+              <div class="form-group"><label>実施日</label><input type="date" data-lg="workDate"></div>
+              <div class="form-group"><label>実施者</label><input type="text" data-lg="worker" placeholder="氏名"></div>
+              <div class="form-group">
+                <label>【観測】方式</label>
+                <select data-lg="obsMode">
+                  <option value="半自動(機器単独)">□ 半自動(機器単独)</option>
+                  <option value="通信機接続">□ 通信機接続</option>
+                  <option value="無線機－通信機接続">□ 無線機－通信機接続</option>
+                </select>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-title"><span>📟 【集録装置】・【水位センサ】情報（資機材台帳控え）</span></div>
+            <div style="font-size:0.8rem; font-weight:700; color:var(--primary); margin-bottom:6px;">■ 集録装置 (NetLG-301N)</div>
+            <div class="form-row-4" style="margin-bottom:10px;">
+              <div class="form-group"><label>型式</label><input type="text" data-lg="loggerModel" value="NetLG-301N"></div>
+              <div class="form-group"><label>製造番号 No.</label><input type="text" data-lg="loggerSerial" placeholder="製造番号を控える"></div>
+              <div class="form-group"><label>ROMバージョン</label><input type="text" data-lg="romVer" placeholder="例: Ver 1.02"></div>
+              <div class="form-group"><label>製造年月</label><input type="text" data-lg="loggerMfgDate" placeholder="例: 2024年5月"></div>
+            </div>
+            <div style="font-size:0.8rem; font-weight:700; color:var(--primary); margin-bottom:6px;">■ 水位センサ（水圧式水位計）</div>
+            <div class="form-row-3">
+              <div class="form-group"><label>型式</label><input type="text" data-lg="wlModel" placeholder="型式"></div>
+              <div class="form-group"><label>製造番号 No.</label><input type="text" data-lg="wlSerial" placeholder="製造番号 No."></div>
+              <div class="form-group"><label>製造年月</label><input type="text" data-lg="wlMfgDate" placeholder="例: 2024年5月"></div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-title">
+              <span>⚡ 【機器基本設定】・電源電圧チェック</span>
+              <span id="batteryStatusBadge" class="badge-ok">メイン電池判定待機</span>
+            </div>
+            <div class="form-row-3">
+              <div class="form-group"><label>ネットワークアドレス #</label><input type="text" data-lg="netAddr" placeholder="#01"></div>
+              <div class="form-group"><label>水位記録インターバル</label><input type="text" data-lg="wlInterval" placeholder="例: 1時間 (60分)"></div>
+              <div class="form-group"><label>6時間以上の記録時刻(水位)</label><input type="text" data-lg="wlRecTime" placeholder="例: 00:00"></div>
+            </div>
+            <div class="form-row-3">
+              <div class="form-group">
+                <label>ひずみ記録インターバル <span id="intervalMatchBadge" style="font-size:0.7rem;"></span></label>
+                <input type="text" data-lg="stInterval" placeholder="例: 1時間 (水位と一致確認)">
+              </div>
+              <div class="form-group"><label>6時間以上の記録時刻(ひずみ)</label><input type="text" data-lg="stRecTime" placeholder="例: 00:00"></div>
+              <div class="form-group">
+                <label>増設ユニット認識 / ch総数</label>
+                <div style="display:flex; gap:6px;">
+                  <select data-lg="expUnit" style="width:50%;"><option value="無">無</option><option value="有">有</option></select>
+                  <input type="number" data-lg="totalCh" placeholder="ch数" style="width:50%;">
+                </div>
+              </div>
+            </div>
+            <div class="form-row-4">
+              <div class="form-group"><label>電源 外部 (V)</label><input type="number" step="0.01" data-lg="voltExt" placeholder="V"></div>
+              <div class="form-group">
+                <label style="color:var(--primary); font-weight:700;">電池 メイン (2.7V以上必須)</label>
+                <input type="number" step="0.01" data-lg="voltMain" placeholder="例: 3.15">
+              </div>
+              <div class="form-group"><label>電池 サブ (V)</label><input type="number" step="0.01" data-lg="voltSub" placeholder="V"></div>
+              <div class="form-group"><label>内部温度 (℃)</label><input type="number" step="0.1" data-lg="tempInternal" placeholder="℃"></div>
+            </div>
+            <div class="form-row-3">
+              <div class="form-group">
+                <label>時計確認</label>
+                <select data-lg="clockCheck"><option value="OK (確認済)">☑ 確認済 (OK)</option><option value="未確認">□ 未確認</option></select>
+              </div>
+              <div class="form-group">
+                <label>ノイズフィルタ (Hz)</label>
+                <select data-lg="noiseFilter"><option value="60Hz">60 Hz (西日本)</option><option value="50Hz">50 Hz (東日本)</option><option value="OFF">OFF</option></select>
+              </div>
+              <div class="form-group">
+                <label>塩ビパイプ 方向線</label>
+                <select data-lg="pipeDir"><option value="山側 / 谷側">山側 / 谷側</option><option value="山側">山側</option><option value="谷側">谷側</option></select>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Right Column: Borehole Diagram + Auto-Calculator + Water/Strain Setup -->
+        <div>
+          <section class="panel calc-box">
+            <div class="panel-title" style="border-bottom-color:#93c5fd;">
+              <span>📐 孔内水位・センサ深度 自動計算＆関係図（添付図完全再現）</span>
+            </div>
+
+            <div style="display:grid; grid-template-columns: 210px 1fr; gap:14px; align-items:center;">
+              <!-- SVG Borehole Schematic Diagram (Replicating attached image_e4b3a9.png) -->
+              <div style="background:#fff; border:1px solid #cbd5e1; border-radius:8px; padding:8px; text-align:center;">
+                <svg viewBox="0 0 220 310" width="100%" height="260" style="font-family:sans-serif;">
+                  <!-- Pipe -->
+                  <rect x="96" y="18" width="12" height="262" fill="#fff" stroke="#000" stroke-width="2"/>
+                  <!-- Ground Line -->
+                  <line x1="55" y1="60" x2="180" y2="60" stroke="#000" stroke-width="3"/>
+                  <text x="135" y="38" font-size="11" font-weight="bold">地表面標高</text>
+                  <polyline points="155,42 135,42 128,58" fill="none" stroke="#000" stroke-width="1.5"/>
+                  <!-- Standpipe (立上り) -->
+                  <line x1="82" y1="18" x2="82" y2="60" stroke="#000" stroke-width="1.5"/>
+                  <polygon points="82,18 78,26 86,26" fill="#000"/>
+                  <polygon points="82,60 78,52 86,52" fill="#000"/>
+                  <text x="32" y="43" font-size="11" font-weight="bold">立上り</text>
+                  <!-- Water Table Line -->
+                  <line x1="85" y1="165" x2="175" y2="165" stroke="#0284c7" stroke-width="2.5"/>
+                  <polygon points="150,165 144,154 156,154" fill="none" stroke="#0284c7" stroke-width="1.5"/>
+                  <line x1="144" y1="170" x2="156" y2="170" stroke="#0284c7" stroke-width="1.5"/>
+                  <line x1="147" y1="175" x2="153" y2="175" stroke="#0284c7" stroke-width="1.5"/>
+                  <text x="155" y="100" font-size="11" font-weight="bold" fill="#0369a1">標高水位</text>
+                  <polyline points="175,105 165,105 160,162" fill="none" stroke="#0369a1" stroke-width="1.5"/>
+                  <!-- Sensor Black Oval -->
+                  <ellipse cx="102" cy="235" rx="5" ry="12" fill="#000"/>
+                  <line x1="75" y1="235" x2="138" y2="235" stroke="#000" stroke-width="1.2"/>
+                  <!-- Bottom Line -->
+                  <line x1="50" y1="280" x2="92" y2="280" stroke="#000" stroke-width="1.5"/>
+                  <!-- Arrows: 孔長 -->
+                  <line x1="60" y1="60" x2="60" y2="280" stroke="#000" stroke-width="1.5"/>
+                  <polygon points="60,60 56,69 64,69" fill="#000"/>
+                  <polygon points="60,280 56,271 64,271" fill="#000"/>
+                  <text x="26" y="180" font-size="11" font-weight="bold">孔長</text>
+                  <!-- Arrows: ③ センサ深度 -->
+                  <line x1="78" y1="60" x2="78" y2="235" stroke="#000" stroke-width="1.5"/>
+                  <polyline points="73,68 78,60 83,68" fill="none" stroke="#000" stroke-width="1.5"/>
+                  <polyline points="73,227 78,235 83,227" fill="none" stroke="#000" stroke-width="1.5"/>
+                  <text x="81" y="142" font-size="12" font-weight="bold">③</text>
+                  <!-- Arrows: ① 地下水位 -->
+                  <line x1="122" y1="60" x2="122" y2="165" stroke="#000" stroke-width="1.5"/>
+                  <polyline points="117,68 122,60 127,68" fill="none" stroke="#000" stroke-width="1.5"/>
+                  <polyline points="117,157 122,165 127,157" fill="none" stroke="#000" stroke-width="1.5"/>
+                  <text x="126" y="118" font-size="12" font-weight="bold">①</text>
+                  <!-- Arrows: ② 実水位 -->
+                  <line x1="122" y1="165" x2="122" y2="235" stroke="#000" stroke-width="1.5"/>
+                  <polyline points="117,173 122,165 127,173" fill="none" stroke="#000" stroke-width="1.5"/>
+                  <polyline points="117,227 122,235 127,227" fill="none" stroke="#000" stroke-width="1.5"/>
+                  <text x="126" y="206" font-size="12" font-weight="bold">②</text>
+                </svg>
+              </div>
+
+              <!-- Input Fields Linked to Diagram -->
+              <div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>地表面標高 (EL. m)</label>
+                    <input type="number" step="0.01" data-lg="groundElev" placeholder="例: 125.40">
+                  </div>
+                  <div class="form-group">
+                    <label>管口 立上り (m)</label>
+                    <input type="number" step="0.01" data-lg="standpipe" placeholder="例: 0.50">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label style="color:#0369a1; font-weight:700;">孔長 / 孔底深度 (GL- m)</label>
+                    <input type="number" step="0.01" data-lg="boreholeLength" placeholder="触針計測 (例: 25.30)">
+                  </div>
+                  <div class="form-group">
+                    <label>想定すべり面深度 (GL- m 任意)</label>
+                    <input type="number" step="0.1" data-lg="slipDepth" placeholder="例: 18.5">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label style="color:var(--primary); font-weight:700;">① 地下水位 手測り (GL- m)</label>
+                    <input type="number" step="0.01" data-lg="waterLevelGL" placeholder="触針計測 (例: 12.40)">
+                  </div>
+                  <div class="form-group">
+                    <label style="color:var(--primary); font-weight:700;">③ センサ深度 (GL- m)</label>
+                    <input type="number" step="0.01" data-lg="sensorDepthGL" placeholder="例: 25.00">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label style="color:#15803d; font-weight:700;">② 実水位 (m) [③－①]</label>
+                    <input type="number" step="0.01" data-lg="actualWaterLevel" placeholder="自動計算または実測値">
+                  </div>
+                  <div class="form-group">
+                    <label>標高水位 (EL. m) [地盤標高－①]</label>
+                    <input type="number" step="0.01" data-lg="elevWaterLevel" placeholder="自動計算">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Live Calculation Guide Card -->
+            <div class="calc-result-card" id="depthAssistantBox">
+              <div style="font-size:0.8rem; font-weight:700; color:var(--primary); margin-bottom:4px;">
+                🧮 センサ深度・実水位 調整アシスタント
+              </div>
+              <div id="depthAssistantText" style="font-size:0.78rem; color:var(--text-main);">
+                「孔長(GL-m)」と「① 地下水位(GL-m)」を入力すると、孔底から10〜50cm高いキリのいい推奨センサ深度（③）と、コントローラーで合わせるべき目標実水位（②＝③－①）を自動算出します。
+              </div>
+              <div style="margin-top:6px; display:flex; gap:6px; flex-wrap:wrap;" id="depthQuickApplyBtns"></div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-title"><span>⚙️ 【水位セットアップ】・【ひずみセットアップ】・【開始時データ】</span></div>
+            <div style="font-size:0.8rem; font-weight:700; color:var(--primary); margin-bottom:5px;">■ 水位セットアップ</div>
+            <div class="form-row-3">
+              <div class="form-group">
+                <label style="color:#b45309; font-weight:700;">センサ係数 (要メモ)</label>
+                <input type="text" data-lg="sensorCoeff" placeholder="水位計記載の係数">
+              </div>
+              <div class="form-group">
+                <label>オフセット (水面引揚時誤差)</label>
+                <input type="text" data-lg="wlOffset" placeholder="例: 0.00">
+              </div>
+              <div class="form-group">
+                <label>転送データ</label>
+                <select data-lg="transferData">
+                  <option value="実水位&地下水位">□ 実水位 & 地下水位</option>
+                  <option value="実水位のみ">□ 実水位のみ</option>
+                  <option value="地下水位のみ">□ 地下水位のみ</option>
+                  <option value="標高水位のみ">□ 標高水位のみ</option>
+                  <option value="実水位&標高水位">□ 実水位 & 標高水位</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="font-size:0.8rem; font-weight:700; color:var(--primary); margin:8px 0 5px;">■ ひずみセットアップ ＆ 記録開始時刻</div>
+            <div class="form-row-4">
+              <div class="form-group">
+                <label>ひずみ初期値時刻設定</label>
+                <select data-lg="strainInitTimeMode"><option value="無">□ 無</option><option value="有">□ 有</option></select>
+              </div>
+              <div class="form-group"><label>初期値 設定時刻</label><input type="text" data-lg="strainInitTimeVal" placeholder="時 : 分"></div>
+              <div class="form-group">
+                <label>ひずみデータ 極性反転</label>
+                <select data-lg="strainPolarity"><option value="OFF">□ OFF</option><option value="ON">□ ON</option></select>
+              </div>
+              <div class="form-group"><label>記録開始時刻</label><input type="text" data-lg="recStartTime" placeholder="例: 14時 00分"></div>
+            </div>
+
+            <div style="font-size:0.8rem; font-weight:700; color:var(--primary); margin:8px 0 5px;">■ 開始時データ（最終確認）</div>
+            <div class="form-row-3">
+              <div class="form-group"><label>開始時 地下水位 (GL- m)</label><input type="text" data-lg="startWL_GL" placeholder="GL- m"></div>
+              <div class="form-group"><label>開始時 手測り (GL- m)</label><input type="text" data-lg="startManual_GL" placeholder="GL- m"></div>
+              <div class="form-group"><label>開始時 標高水位 (EL. m)</label><input type="text" data-lg="startWL_EL" placeholder="EL. m"></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUB-VIEW 3: ひずみ1〜30ch抵抗値テーブル ＆ 警報設定 -->
+    <div id="loggerViewStrain" style="display:none;">
+      <section class="panel">
+        <div class="panel-title">
+          <span>📊 【ひずみ】（1ch ～ 30ch 抵抗値・絶縁抵抗値・オフセット・開始時データ）</span>
+          <div style="display:flex; gap:8px;">
+            <button type="button" class="btn btn-outline btn-sm" id="fillStandardResBtn">標準抵抗値(120Ω / 100MΩ)を一括入力</button>
+          </div>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th rowspan="2" style="width:42px;">ch</th>
+                <th rowspan="2">深度 / ゲージ番号<br>(メモ任意)</th>
+                <th colspan="3">内部抵抗値 (Ω)</th>
+                <th>絶縁抵抗値</th>
+                <th colspan="2">データ (με)</th>
+                <th rowspan="2" style="min-width:130px;">備考</th>
+              </tr>
+              <tr>
+                <th>赤－黒 (Ω)</th>
+                <th>黒－白 (Ω)</th>
+                <th>緑－赤 (Ω)</th>
+                <th>白－アース (MΩ)</th>
+                <th>オフセット</th>
+                <th>開始時(初期値)<br>(演算後)データ</th>
+              </tr>
+            </thead>
+            <tbody id="strainTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="logger-grid">
+        <section class="panel">
+          <div class="panel-title"><span>🚨 水位警報設定 (警報1 ～ 4)</span></div>
+          <div class="table-scroll">
+            <table class="data-table" style="min-width:480px;">
+              <thead>
+                <tr><th>項目</th><th>警報 1</th><th>警報 2</th><th>警報 3</th><th>警報 4</th></tr>
+              </thead>
+              <tbody id="wlAlarmBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-title"><span>🚨 ひずみ警報設定 (警報1 ～ 4)</span></div>
+          <div class="form-row" style="margin-bottom:8px;">
+            <div class="form-group"><label>警報無効 ch</label><input type="text" data-lg="strainAlarmDisabledCh" placeholder="例: 無 (または無効ch番号)"></div>
+            <div class="form-group"><label>警報接点 ON時間</label><input type="text" data-lg="alarmContactOnTime" placeholder="秒 / 分"></div>
+          </div>
+          <div class="table-scroll">
+            <table class="data-table" style="min-width:480px;">
+              <thead>
+                <tr><th>項目</th><th>警報 1</th><th>警報 2</th><th>警報 3</th><th>警報 4 (累積のみ)</th></tr>
+              </thead>
+              <tbody id="stAlarmBody"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Printable A4 Checksheet Area (Hidden on screen, formatted for A4 Print) -->
+  <div id="printChecksheetArea"></div>
+
+  <!-- Mobile Bottom Quick Action Bar -->
+  <div class="mobile-bar">
+    <button type="button" class="btn btn-outline btn-sm" id="mobileSwitchModuleBtn">📟 301N設置へ</button>
+    <button type="button" class="btn btn-primary btn-sm" id="mobileWordBtn">📘 Word出力</button>
+    <button type="button" class="btn btn-accent btn-sm" id="mobilePdfBtn">📕 PDF出力</button>
+  </div>
+
+  <script>
+    /*************************************************************************
+     * 1. 用途別キャプションプリセット（③ 地下水位計・パイプ歪計 設置 を追加！）
+     *************************************************************************/
+    const PURPOSE_PRESETS = {
+      boring_checklist: {
+        id: "boring_checklist",
+        label: "② 調査ボーリング 点検チェックリスト（支店内）",
+        categories: [
+          {
+            name: "モノレール脱線防止",
+            items: [
+              { text: "モノレール 起点 全景" },
+              { text: "モノレール 起点 ストッパー" },
+              { text: "モノレール 終点 全景" },
+              { text: "モノレール 終点 ストッパー" }
+            ]
+          },
+          {
+            name: "足場仮設",
+            items: [
+              { text: "床材 全景" },
+              { text: "床材 固定" },
+              { text: "手すり・中さん・幅木 全景" },
+              { text: "手すり（〇cm）", promptType: "cm_min", minVal: 85, unit: "cm", defaultVal: 90, note: "※〇には任意の計測値を入れる。85cm以上でなければならない。" },
+              { text: "中さん（〇cm）", promptType: "cm_range", minVal: 35, maxVal: 50, unit: "cm", defaultVal: 45, note: "※〇には任意の計測値を入れる。35～50cm以上でなければならない。" },
+              { text: "幅木（〇cm）", promptType: "cm_min", minVal: 10, unit: "cm", defaultVal: 15, note: "※〇には任意の計測値を入れる。幅10cm以上でなければならない。" },
+              { text: "昇降設備 全景", note: "※段差50cm以上であれば必ず昇降設備（階段）がいる。" },
+              { text: "昇降設備 手すり" },
+              { text: "クランプカバー・単管キャップ" },
+              { text: "掲示物 掲示" },
+              { text: "化学物質リスクアセスメント・化学物質管理責任者・\n保護具着用管理責任者 明示" },
+              { text: "緊急時搬送先・連絡体制 掲示" }
+            ]
+          },
+          {
+            name: "ボーリングマシン",
+            items: [
+              { text: "ボーリングマシン ワイヤー部" },
+              { text: "ボーリングマシン 回転部カバー" },
+              { text: "ボーリングマシン 取扱責任者・持ち込み機械届受理証" }
+            ]
+          },
+          {
+            name: "櫓",
+            items: [
+              { text: "設置位置 上方（支障木なし）" },
+              { text: "櫓 固定" },
+              { text: "櫓 昇降階段・作業ステージ", note: "※標準貫入試験ありの場合のみ" },
+              { text: "墜落制止用器具（製造年〇年）", promptType: "year_limit", maxAgeYears: 3, unit: "年", defaultVal: new Date().getFullYear(), note: "※標準貫入試験ありの場合のみで、使用開始から3年以内を限度とする" }
+            ]
+          },
+          {
+            name: "動噴",
+            items: [
+              { text: "動噴 回転部カバー" },
+              { text: "動噴 オイルマット" },
+              { text: "動噴 取扱責任者・持ち込み機械届受理証" }
+            ]
+          }
+        ]
+      },
+      netlg_install: {
+        id: "netlg_install",
+        label: "③ 地下水位計・パイプ歪計 設置（NetLG-301N）",
+        categories: [
+          {
+            name: "NetLG-301N・水位計・パイプ歪計 設置必須写真",
+            items: [
+              { text: "地下水位計・パイプ歪計\n設置前", note: "※作業開始前に撮影（電子黒板2行表記）" },
+              { text: "地下水位計・パイプ歪計\n設置状況", note: "※単管・保護箱・ケーブル接続・水位計設置状況" },
+              { text: "地下水位計・パイプ歪計\n設置完了", note: "※設置完了後に撮影" },
+              { text: "地下水位計・パイプ歪計\n観測状況", note: "※コントローラー接続・観測ON確認状況" }
+            ]
+          }
+        ]
+      },
+      safety_patrol: {
+        id: "safety_patrol",
+        label: "① 安全衛生自主点検（支社安全パトロールなど）",
+        categories: [
+          {
+            name: "安全衛生自主点検（次回詳細追加予定・添付PDF初期候補）",
+            items: [
+              { text: "足場 全景" }, { text: "床材" }, { text: "床材 固定" }, { text: "昇降階段" },
+              { text: "手すり・中さん 全景" }, { text: "幅木" }, { text: "中さん" }, { text: "手すり" },
+              { text: "クランプカバー・単管キャップ" }, { text: "クランプカバー" }, { text: "ワイヤー" },
+              { text: "回転部保護" }, { text: "櫓の固定" }, { text: "櫓の昇降設備の固定" },
+              { text: "墜落制止用器具" }, { text: "ボーリング取扱責任者・持ち込み機械届受理証" },
+              { text: "化学物質リスクアセスメント・化学物質管理責任者・\n保護具着用管理責任者の明示" },
+              { text: "緊急時搬送先・連絡体制 掲示" }, { text: "掲示" }, { text: "ボーリングマシンのオイル漏れ対策" }
+            ]
+          }
+        ]
+      }
+    };
+
+    /*************************************************************************
+     * 2. NetLG-301N 事前準備・持参荷物・現場作業手順のマスター定義
+     *************************************************************************/
+    const PREP_STEPS = [
+      { id: "prep_1", title: "設置点検表を持参する", sub: "紙の予備または本ツール（iPhone/タブレット）を準備" },
+      { id: "prep_2", title: "製造番号を控える ➔ 資機材台帳に記載する", sub: "NetLG-301N本体および水圧式水位計の製造番号（No.）・製造年月を控える", jumpTab: "sheet" },
+      { id: "prep_3", title: "持参荷物をすべてチェックする", sub: "下の「荷物をチェック（16品目）」で積み込み漏れがないか確認" }
+    ];
+
+    const PACKING_ITEMS = [
+      "コントローラー", "単管", "保護箱", "水位計キャップ",
+      "触針式水位計", "水圧式水位計", "NetLG-301N", "ネジ",
+      "ビニールテープ", "パテ", "乾燥剤", "虫除け",
+      "大気補正用乾燥剤", "電池（予備含む）", "ハンマー（ぼんごし）", "ドライバー・ラチェット等"
+    ];
+
+    const FIELD_STEPS = [
+      {
+        id: "f_1",
+        title: "設置前写真（電子黒板「地下水位計・パイプ歪計 / 設置前」）を撮る",
+        sub: "作業着手前の孔口・周辺状況を撮影します。",
+        photoCaption: "地下水位計・パイプ歪計\n設置前"
+      },
+      {
+        id: "f_2",
+        title: "単管を挿す",
+        sub: "孔から伸ばすコードが届くか、保護箱を開けて蓋や扉が当たらないか、邪魔にならないか確認して打ち込む。"
+      },
+      {
+        id: "f_3",
+        title: "孔口の型枠・セメント未硬化時のパイプ固定",
+        sub: "孔口の型枠とセメントが固まっていない場合は、パイプが動かないようにビニールテープで巻き、固定する。"
+      },
+      {
+        id: "f_4",
+        title: "歪み計のコードをパイプ口に巻いて固定する",
+        sub: "コード自重で落下・断線しないようパイプ口に確実に巻き付ける。"
+      },
+      {
+        id: "f_5",
+        title: "歪み計と圧力式水位計のコードを保護箱に下から通す",
+        sub: "防水・防虫のため、保護箱底面の穴から通線する。"
+      },
+      {
+        id: "f_6",
+        title: "歪み計と水位計コードをドライバーで接続する",
+        sub: "コードが絡まないように整理し、深度間違い（ch番号間違い）・極性間違いがないように確実に結線する。",
+        jumpTab: "strain"
+      },
+      {
+        id: "f_7",
+        title: "触針式水位計で「地下水位(GL-)」と「孔底深度(GL-)」を計測する",
+        sub: "実測した①地下水位(GL-m)と孔長(GL-m)をチェックシートに記録します。",
+        jumpTab: "sheet"
+      },
+      {
+        id: "f_8",
+        title: "コントローラーを接続し、記録をOFFにし、設定を削除（初期化）する",
+        sub: "過去の残留データ・設定をクリアしてから新規セットアップを開始。"
+      },
+      {
+        id: "f_9",
+        title: "水面引き揚げ状態で実水位0設定（またはオフセット調整）",
+        sub: "オフセット0の状態で水圧式水位計を孔に下ろし、水面から引き揚げた状態で実水位を0に設定する（または残る誤差をオフセットとして引く）。",
+        jumpTab: "sheet"
+      },
+      {
+        id: "f_10",
+        title: "水圧式水位計に記載された「センサ係数」をコントローラーに登録し、値をメモする",
+        sub: "センサタグ・検査表記載のセンサ係数を正確に入力し、チェックシートに記録。",
+        jumpTab: "sheet"
+      },
+      {
+        id: "f_11",
+        title: "孔長とすべり面の関係から「水位計のセンサ深度(③)」を決める",
+        sub: "すべり面より深い所には極力入れない。水位が孔底付近の場合は、孔底から10〜50cm高いキリのいい深度をセンサ深度とする。",
+        jumpTab: "sheet"
+      },
+      {
+        id: "f_12",
+        title: "目標の実水位（②＝③センサ深度－①地下水位）に合わせて水位計を下ろし固定",
+        sub: "地下水位からセンサ深度を差し引いた値に実水位が合うようケーブル長さを調整・固定する。",
+        jumpTab: "sheet"
+      },
+      {
+        id: "f_13",
+        title: "「歪み記録インターバル」と「水位記録インターバル」が合っているか確認",
+        sub: "両方のインターバル設定が一致しているか確認する。",
+        jumpTab: "sheet"
+      },
+      {
+        id: "f_14",
+        title: "電池残量が「メイン 2.7V以上」か確認する",
+        sub: "2.7V未満の場合は電池交換を行う。",
+        jumpTab: "sheet"
+      },
+      {
+        id: "f_15",
+        title: "観測が「ON（記録開始）」になっているか最終確認",
+        sub: "コントローラーを抜く前に必ず観測状態がONになっていることを確認！"
+      },
+      {
+        id: "f_16",
+        title: "「設置完了」「設置状況」「観測状況」の3枚の写真を撮影する",
+        sub: "電子黒板：「地下水位計・パイプ歪計（改行）設置完了 / 設置状況 / 観測状況」",
+        multiPhotos: [
+          { label: "📷 設置完了を撮影", caption: "地下水位計・パイプ歪計\n設置完了" },
+          { label: "📷 設置状況を撮影", caption: "地下水位計・パイプ歪計\n設置状況" },
+          { label: "📷 観測状況を撮影", caption: "地下水位計・パイプ歪計\n観測状況" }
+        ]
+      }
+    ];
+
+    function createDefaultLoggerData() {
+      const strainCh = [];
+      for (let i = 1; i <= 30; i++) {
+        strainCh.push({ ch: i, depth: "", rRB: "", rBW: "", rGR: "", insul: "", offset: "", initVal: "", memo: "" });
+      }
+      const wlAlarms = [1, 2, 3, 4].map(() => ({ item: "", val: "", hyst: "", num: "", dest: "" }));
+      const stAlarms = [1, 2, 3, 4].map(() => ({ item: "", val: "", hyst: "", num: "", dest: "", delay: "" }));
+
+      return {
+        prepChecks: {},
+        packChecks: {},
+        fieldChecks: {},
+        fields: {
+          siteNo: "", siteName: "", weather: "", workDate: new Date().toISOString().slice(0, 10), worker: "",
+          obsMode: "半自動(機器単独)",
+          loggerModel: "NetLG-301N", loggerSerial: "", romVer: "", loggerMfgDate: "",
+          wlModel: "", wlSerial: "", wlMfgDate: "",
+          netAddr: "", wlInterval: "1時間", wlRecTime: "", stInterval: "1時間", stRecTime: "",
+          expUnit: "無", totalCh: "",
+          voltExt: "", voltMain: "", voltSub: "", tempInternal: "",
+          clockCheck: "OK (確認済)", noiseFilter: "60Hz", pipeDir: "山側 / 谷側",
+          groundElev: "", standpipe: "", boreholeLength: "", slipDepth: "",
+          waterLevelGL: "", sensorDepthGL: "", actualWaterLevel: "", elevWaterLevel: "",
+          sensorCoeff: "", wlOffset: "0.00", transferData: "実水位&地下水位",
+          strainInitTimeMode: "無", strainInitTimeVal: "", strainPolarity: "OFF", recStartTime: "",
+          startWL_GL: "", startManual_GL: "", startWL_EL: "",
+          strainAlarmDisabledCh: "", alarmContactOnTime: ""
+        },
+        strainCh: strainCh,
+        wlAlarms: wlAlarms,
+        stAlarms: stAlarms
+      };
+    }
+
+    function cloneDeep(obj) { return JSON.parse(JSON.stringify(obj)); }
+
+    /*************************************************************************
+     * 3. 状態管理 & 二重永続化ストレージ (IndexedDB + localStorage)
+     *************************************************************************/
+    const DB_NAME = "LandslideConsultantToolDB_v6";
+    const STORE_NAME = "app_state";
+
+    let appState = {
+      activeModule: "photo", // "photo" | "logger"
+      selectedPurpose: "boring_checklist",
+      projectTitle: "",
+      pageOrientation: "landscape",
+      layoutMode: "4",
+      captionStyle: "overlay-bl",
+      fontSizeScale: 100,
+      boxWidthMode: "auto",
+      purposeData: cloneDeep(PURPOSE_PRESETS),
+      photos: [],
+      loggerData: createDefaultLoggerData()
+    };
+
+    let activePhotoId = null;
+    let currentViewMode = "edit";
+    let pendingDirectCaptureItem = null;
+
+    function getCurrentPurposeObj() {
+      if (!appState.purposeData || !appState.purposeData[appState.selectedPurpose]) {
+        appState.purposeData = { ...cloneDeep(PURPOSE_PRESETS), ...(appState.purposeData || {}) };
+      }
+      return appState.purposeData[appState.selectedPurpose];
+    }
+
+    function getAllFlatItemsForCurrentPurpose() {
+      const pObj = getCurrentPurposeObj();
+      const list = [];
+      pObj.categories.forEach(cat => {
+        cat.items.forEach(item => list.push({ ...item, categoryName: cat.name }));
+      });
+      return list;
+    }
+
+    function getPhotosPerPage() {
+      if (appState.layoutMode === "4") return 4;
+      if (appState.layoutMode === "2-h" || appState.layoutMode === "2-v" || appState.layoutMode === "2") return 2;
+      return 1;
+    }
+
+    function openDatabase() {
+      return new Promise((resolve, reject) => {
+        if (!window.indexedDB) return reject(new Error("IndexedDB unavailable"));
+        const req = indexedDB.open(DB_NAME, 1);
+        req.onupgradeneeded = (e) => {
+          const db = e.target.result;
+          if (!db.objectStoreNames.contains(STORE_NAME)) db.createObjectStore(STORE_NAME);
+        };
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => reject(req.error);
+      });
+    }
+
+    async function saveStateToDB() {
+      const dot = document.getElementById("saveDot");
+      const statusText = document.getElementById("saveStatusText");
+      try {
+        if (dot) dot.style.backgroundColor = "#facc15";
+
+        // Immediate synchronous backup of NetLG-301N & settings to localStorage so data NEVER vanishes
+        try {
+          localStorage.setItem("landslide_logger_backup_v6", JSON.stringify({
+            activeModule: appState.activeModule,
+            selectedPurpose: appState.selectedPurpose,
+            projectTitle: appState.projectTitle,
+            pageOrientation: appState.pageOrientation,
+            layoutMode: appState.layoutMode,
+            captionStyle: appState.captionStyle,
+            fontSizeScale: appState.fontSizeScale,
+            boxWidthMode: appState.boxWidthMode,
+            purposeData: appState.purposeData,
+            loggerData: appState.loggerData
+          }));
+        } catch (_) {}
+
+        const stateToSave = {
+          activeModule: appState.activeModule,
+          selectedPurpose: appState.selectedPurpose,
+          projectTitle: appState.projectTitle,
+          pageOrientation: appState.pageOrientation,
+          layoutMode: appState.layoutMode,
+          captionStyle: appState.captionStyle,
+          fontSizeScale: appState.fontSizeScale,
+          boxWidthMode: appState.boxWidthMode,
+          purposeData: appState.purposeData,
+          loggerData: appState.loggerData,
+          photos: appState.photos.map(p => ({
+            id: p.id, name: p.name, rawDataUrl: p.rawDataUrl,
+            caption: p.caption, templateKey: p.templateKey || "", note: p.note || "", rotation: p.rotation || 0
+          }))
+        };
+
+        const db = await openDatabase();
+        await new Promise((resolve, reject) => {
+          const tx = db.transaction(STORE_NAME, "readwrite");
+          tx.objectStore(STORE_NAME).put(stateToSave, "current_project");
+          tx.oncomplete = () => resolve();
+          tx.onerror = () => reject(tx.error);
+        });
+
+        const timeStr = new Date().toTimeString().split(" ")[0];
+        if (dot) dot.style.backgroundColor = "#4ade80";
+        if (statusText) statusText.textContent = "自動保存完了 (" + timeStr + ")";
+      } catch (err) {
+        if (dot) dot.style.backgroundColor = "#38bdf8";
+        if (statusText) statusText.textContent = "ローカル保護保存済";
+      }
+    }
+
+    async function loadStateFromDB() {
+      let loaded = null;
+      try {
+        const db = await openDatabase();
+        loaded = await new Promise((resolve, reject) => {
+          const tx = db.transaction(STORE_NAME, "readonly");
+          const req = tx.objectStore(STORE_NAME).get("current_project");
+          req.onsuccess = () => resolve(req.result);
+          req.onerror = () => reject(req.error);
+        });
+      } catch (_) {}
+
+      if (!loaded) {
+        try {
+          const raw = localStorage.getItem("landslide_logger_backup_v6");
+          if (raw) loaded = JSON.parse(raw);
+        } catch (_) {}
+      }
+
+      if (loaded && typeof loaded === "object") {
+        const defLogger = createDefaultLoggerData();
+        appState = {
+          ...appState,
+          ...loaded,
+          purposeData: { ...cloneDeep(PURPOSE_PRESETS), ...(loaded.purposeData || {}) },
+          photos: Array.isArray(loaded.photos) ? loaded.photos : [],
+          loggerData: {
+            ...defLogger,
+            ...(loaded.loggerData || {}),
+            fields: { ...defLogger.fields, ...((loaded.loggerData && loaded.loggerData.fields) || {}) },
+            strainCh: (loaded.loggerData && Array.isArray(loaded.loggerData.strainCh) && loaded.loggerData.strainCh.length === 30)
+              ? loaded.loggerData.strainCh : defLogger.strainCh,
+            wlAlarms: (loaded.loggerData && Array.isArray(loaded.loggerData.wlAlarms)) ? loaded.loggerData.wlAlarms : defLogger.wlAlarms,
+            stAlarms: (loaded.loggerData && Array.isArray(loaded.loggerData.stAlarms)) ? loaded.loggerData.stAlarms : defLogger.stAlarms
+          }
+        };
+      }
+    }
+
+    /*************************************************************************
+     * 4. NetLG-301N UI描画・自動計算ロジック・A4印刷シート生成
+     *************************************************************************/
+    function renderLoggerWorkflow() {
+      // 1. 事前準備
+      const prepList = document.getElementById("prepStepList");
+      prepList.innerHTML = "";
+      let prepDone = 0;
+      PREP_STEPS.forEach((st, idx) => {
+        const checked = Boolean(appState.loggerData.prepChecks[st.id]);
+        if (checked) prepDone++;
+        const div = document.createElement("div");
+        div.className = "step-item" + (checked ? " checked" : "");
+        div.innerHTML =
+          '<input type="checkbox" ' + (checked ? "checked" : "") + '>' +
+          '<span class="step-num">事前' + (idx + 1) + '</span>' +
+          '<div class="step-content">' +
+            '<div class="step-title">' + escapeHtml(st.title) + '</div>' +
+            '<div class="step-sub">' + escapeHtml(st.sub) + '</div>' +
+          '</div>' +
+          (st.jumpTab ? '<button type="button" class="btn btn-outline btn-sm jump-btn">📝 記入欄へ</button>' : '');
+
+        const cb = div.querySelector("input");
+        cb.addEventListener("change", () => {
+          appState.loggerData.prepChecks[st.id] = cb.checked;
+          renderLoggerWorkflow();
+          saveStateToDB();
+        });
+        if (st.jumpTab) {
+          div.querySelector(".jump-btn").addEventListener("click", () => switchLoggerSubTab(st.jumpTab));
+        }
+        prepList.appendChild(div);
+      });
+      document.getElementById("prepProgressBadge").textContent = prepDone + " / " + PREP_STEPS.length + " 完了";
+
+      // 2. 荷物チェック
+      const packGrid = document.getElementById("packingGrid");
+      packGrid.innerHTML = "";
+      let packDone = 0;
+      PACKING_ITEMS.forEach((item, idx) => {
+        const key = "pk_" + idx;
+        const checked = Boolean(appState.loggerData.packChecks[key]);
+        if (checked) packDone++;
+        const label = document.createElement("label");
+        label.className = "packing-chip" + (checked ? " checked" : "");
+        label.innerHTML = '<input type="checkbox" ' + (checked ? "checked" : "") + '><span>' + escapeHtml(item) + '</span>';
+        label.querySelector("input").addEventListener("change", (e) => {
+          appState.loggerData.packChecks[key] = e.target.checked;
+          renderLoggerWorkflow();
+          saveStateToDB();
+        });
+        packGrid.appendChild(label);
+      });
+      document.getElementById("packProgressBadge").textContent = packDone + " / " + PACKING_ITEMS.length;
+
+      // 3. 現場作業手順
+      const fieldList = document.getElementById("fieldStepList");
+      fieldList.innerHTML = "";
+      let fieldDone = 0;
+      FIELD_STEPS.forEach((st, idx) => {
+        const checked = Boolean(appState.loggerData.fieldChecks[st.id]);
+        if (checked) fieldDone++;
+        const div = document.createElement("div");
+        div.className = "step-item" + (checked ? " checked" : "");
+
+        let actionBtnsHtml = "";
+        if (st.photoCaption) {
+          actionBtnsHtml += '<button type="button" class="btn btn-primary btn-sm shoot-step-btn">📷 黒板セットして撮影</button>';
+        }
+        if (st.multiPhotos) {
+          actionBtnsHtml += '<div style="display:flex;flex-direction:column;gap:4px;">' +
+            st.multiPhotos.map((mp, mIdx) => '<button type="button" class="btn btn-primary btn-sm multi-shoot-btn" data-midx="' + mIdx + '">' + escapeHtml(mp.label) + '</button>').join("") +
+            '</div>';
+        }
+        if (st.jumpTab) {
+          actionBtnsHtml += '<button type="button" class="btn btn-outline btn-sm jump-step-btn">📝 記録・計算へ</button>';
+        }
+
+        div.innerHTML =
+          '<input type="checkbox" ' + (checked ? "checked" : "") + '>' +
+          '<span class="step-num">手順' + (idx + 1) + '</span>' +
+          '<div class="step-content">' +
+            '<div class="step-title">' + escapeHtml(st.title) + '</div>' +
+            '<div class="step-sub">' + escapeHtml(st.sub) + '</div>' +
+          '</div>' +
+          actionBtnsHtml;
+
+        const cb = div.querySelector("input");
+        cb.addEventListener("change", () => {
+          appState.loggerData.fieldChecks[st.id] = cb.checked;
+          renderLoggerWorkflow();
+          saveStateToDB();
+        });
+
+        const shootBtn = div.querySelector(".shoot-step-btn");
+        if (shootBtn) {
+          shootBtn.addEventListener("click", () => triggerLoggerPhotoCapture(st.photoCaption));
+        }
+
+        div.querySelectorAll(".multi-shoot-btn").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const mIdx = parseInt(btn.dataset.midx, 10);
+            triggerLoggerPhotoCapture(st.multiPhotos[mIdx].caption);
+          });
+        });
+
+        const jumpBtn = div.querySelector(".jump-step-btn");
+        if (jumpBtn) {
+          jumpBtn.addEventListener("click", () => switchLoggerSubTab(st.jumpTab));
+        }
+
+        fieldList.appendChild(div);
+      });
+      document.getElementById("fieldStepProgressBadge").textContent = fieldDone + " / " + FIELD_STEPS.length + " 完了";
+    }
+
+    // Trigger camera/photo upload with pre-configured 2-line blackboard caption
+    function triggerLoggerPhotoCapture(captionText) {
+      appState.selectedPurpose = "netlg_install";
+      syncControlsFromState();
+      renderCandidateChips();
+      pendingDirectCaptureItem = { text: captionText, note: "NetLG-301N 設置作業記録写真" };
+      document.getElementById("directItemFileInput").click();
+    }
+
+    function renderLoggerTablesAndInputs() {
+      // Sync data-lg inputs
+      const f = appState.loggerData.fields;
+      document.querySelectorAll("[data-lg]").forEach(el => {
+        const key = el.getAttribute("data-lg");
+        if (f[key] !== undefined) el.value = f[key];
+      });
+
+      // Render 30ch table
+      const tbody = document.getElementById("strainTableBody");
+      tbody.innerHTML = "";
+      appState.loggerData.strainCh.forEach((row, idx) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML =
+          '<td><strong>' + row.ch + '</strong></td>' +
+          '<td><input type="text" class="text-left" data-sch="' + idx + '" data-k="depth" value="' + escapeHtml(row.depth || "") + '" placeholder="GL- m"></td>' +
+          '<td><input type="text" data-sch="' + idx + '" data-k="rRB" value="' + escapeHtml(row.rRB || "") + '" placeholder="Ω"></td>' +
+          '<td><input type="text" data-sch="' + idx + '" data-k="rBW" value="' + escapeHtml(row.rBW || "") + '" placeholder="Ω"></td>' +
+          '<td><input type="text" data-sch="' + idx + '" data-k="rGR" value="' + escapeHtml(row.rGR || "") + '" placeholder="Ω"></td>' +
+          '<td><input type="text" data-sch="' + idx + '" data-k="insul" value="' + escapeHtml(row.insul || "") + '" placeholder="MΩ"></td>' +
+          '<td><input type="text" data-sch="' + idx + '" data-k="offset" value="' + escapeHtml(row.offset || "") + '"></td>' +
+          '<td><input type="text" data-sch="' + idx + '" data-k="initVal" value="' + escapeHtml(row.initVal || "") + '"></td>' +
+          '<td><input type="text" class="text-left" data-sch="' + idx + '" data-k="memo" value="' + escapeHtml(row.memo || "") + '"></td>';
+        tbody.appendChild(tr);
+      });
+
+      tbody.querySelectorAll("input").forEach(inp => {
+        inp.addEventListener("input", (e) => {
+          const idx = parseInt(e.target.getAttribute("data-sch"), 10);
+          const k = e.target.getAttribute("data-k");
+          appState.loggerData.strainCh[idx][k] = e.target.value;
+          saveStateToDB();
+        });
+      });
+
+      // Render Water Level Alarms (1-4)
+      const wlBody = document.getElementById("wlAlarmBody");
+      const wlRows = [
+        { label: "監視項目", k: "item", ph: "" },
+        { label: "警報値 (m)", k: "val", ph: "m" },
+        { label: "ヒステリシス値 (m)", k: "hyst", ph: "m" },
+        { label: "番号", k: "num", ph: "" },
+        { label: "宛先 (#)", k: "dest", ph: "#" }
+      ];
+      wlBody.innerHTML = wlRows.map(r => (
+        '<tr><th>' + r.label + '</th>' +
+        [0, 1, 2, 3].map(i => (
+          '<td><input type="text" data-wla="' + i + '" data-k="' + r.k + '" value="' + escapeHtml(appState.loggerData.wlAlarms[i][r.k] || "") + '" placeholder="' + r.ph + '"></td>'
+        )).join("") + '</tr>'
+      )).join("");
+
+      wlBody.querySelectorAll("input").forEach(inp => {
+        inp.addEventListener("input", (e) => {
+          const i = parseInt(e.target.getAttribute("data-wla"), 10);
+          const k = e.target.getAttribute("data-k");
+          appState.loggerData.wlAlarms[i][k] = e.target.value;
+          saveStateToDB();
+        });
+      });
+
+      // Render Strain Alarms (1-4)
+      const stBody = document.getElementById("stAlarmBody");
+      const stRows = [
+        { label: "監視項目", k: "item", ph: "" },
+        { label: "警報値 (με)", k: "val", ph: "με" },
+        { label: "ヒステリシス値 (με)", k: "hyst", ph: "με" },
+        { label: "番号", k: "num", ph: "" },
+        { label: "宛先 (#)", k: "dest", ph: "#" },
+        { label: "遅延時間", k: "delay", ph: "" }
+      ];
+      stBody.innerHTML = stRows.map(r => (
+        '<tr><th>' + r.label + '</th>' +
+        [0, 1, 2, 3].map(i => (
+          '<td><input type="text" data-sta="' + i + '" data-k="' + r.k + '" value="' + escapeHtml(appState.loggerData.stAlarms[i][r.k] || "") + '" placeholder="' + r.ph + '"></td>'
+        )).join("") + '</tr>'
+      )).join("");
+
+      stBody.querySelectorAll("input").forEach(inp => {
+        inp.addEventListener("input", (e) => {
+          const i = parseInt(e.target.getAttribute("data-sta"), 10);
+          const k = e.target.getAttribute("data-k");
+          appState.loggerData.stAlarms[i][k] = e.target.value;
+          saveStateToDB();
+        });
+      });
+
+      updateLoggerEvaluationsAndCalculations();
+    }
+
+    function updateLoggerEvaluationsAndCalculations() {
+      const f = appState.loggerData.fields;
+
+      // 1. Main Battery >= 2.7V check
+      const batBadge = document.getElementById("batteryStatusBadge");
+      const vMain = parseFloat(f.voltMain);
+      if (isNaN(vMain)) {
+        batBadge.className = "badge-ok";
+        batBadge.textContent = "メイン電池: 未入力 (基準2.7V以上)";
+      } else if (vMain >= 2.7) {
+        batBadge.className = "badge-ok";
+        batBadge.textContent = "✅ メイン電池: " + vMain.toFixed(2) + "V (2.7V以上OK)";
+      } else {
+        batBadge.className = "badge-ng";
+        batBadge.textContent = "⚠️ 要電池交換！メイン電池: " + vMain.toFixed(2) + "V (2.7V未満)";
+      }
+
+      // 2. Interval match check
+      const intBadge = document.getElementById("intervalMatchBadge");
+      if (f.wlInterval && f.stInterval) {
+        if (f.wlInterval.trim() === f.stInterval.trim()) {
+          intBadge.style.color = "#16a34a";
+          intBadge.textContent = "(✅ 水位と一致)";
+        } else {
+          intBadge.style.color = "#dc2626";
+          intBadge.textContent = "(⚠️ 水位と不一致！)";
+        }
+      } else {
+        intBadge.textContent = "";
+      }
+
+      // 3. Borehole Water Level & Sensor Depth Auto-Calculation
+      const holeLen = parseFloat(f.boreholeLength);
+      const wlGL = parseFloat(f.waterLevelGL);
+      const sensorGL = parseFloat(f.sensorDepthGL);
+      const groundEL = parseFloat(f.groundElev);
+      const slipGL = parseFloat(f.slipDepth);
+
+      // Auto-update Elevation Water Level = Ground Elev - ①WaterLevelGL
+      if (!isNaN(groundEL) && !isNaN(wlGL)) {
+        const calcEL = (groundEL - wlGL).toFixed(2);
+        f.elevWaterLevel = calcEL;
+        const elInput = document.querySelector('[data-lg="elevWaterLevel"]');
+        if (elInput) elInput.value = calcEL;
+      }
+
+      // Auto-update ②Actual Water Level = ③SensorDepth - ①WaterLevelGL
+      if (!isNaN(sensorGL) && !isNaN(wlGL)) {
+        const calcActual = (sensorGL - wlGL).toFixed(2);
+        f.actualWaterLevel = calcActual;
+        const actInput = document.querySelector('[data-lg="actualWaterLevel"]');
+        if (actInput) actInput.value = calcActual;
+      }
+
+      const msgEl = document.getElementById("depthAssistantText");
+      const btnBox = document.getElementById("depthQuickApplyBtns");
+      btnBox.innerHTML = "";
+
+      if (!isNaN(holeLen)) {
+        // Recommend nice round depth 10cm to 50cm above bottom (holeLen - 0.50 to holeLen - 0.10)
+        const minD = holeLen - 0.50;
+        const maxD = holeLen - 0.10;
+        const candidates = [];
+
+        // Find 0.5m or 0.1m round numbers within [holeLen - 0.50, holeLen - 0.10]
+        for (let step = 1; step <= 5; step++) {
+          const d = Math.round((holeLen - step * 0.1) * 10) / 10;
+          if (d > 0 && !candidates.includes(d.toFixed(1))) {
+            candidates.push(d.toFixed(1));
+          }
+        }
+
+        let html = "・孔底深度 <strong>GL-" + holeLen.toFixed(2) + "m</strong> に対する推奨センサ深度（孔底より10〜50cm上）：<strong>GL-" + minD.toFixed(2) + "m ～ GL-" + maxD.toFixed(2) + "m</strong><br>";
+
+        if (!isNaN(slipGL)) {
+          html += "・想定すべり面深度：<strong>GL-" + slipGL.toFixed(2) + "m</strong> ";
+          if (!isNaN(sensorGL)) {
+            if (sensorGL > slipGL) {
+              html += '<span style="color:#b45309;font-weight:700;">（※現在すべり面より深い位置です。水位が孔底付近でやむを得ない場合を除き注意）</span><br>';
+            } else {
+              html += '<span style="color:#16a34a;font-weight:700;">（✅ すべり面より浅い安全な深度です）</span><br>';
+            }
+          } else {
+            html += "<br>";
+          }
+        }
+
+        if (!isNaN(sensorGL) && !isNaN(wlGL)) {
+          const targetActual = (sensorGL - wlGL).toFixed(2);
+          html += '🎯 <strong>現在の設定：</strong>③センサ深度 <strong>GL-' + sensorGL.toFixed(2) + 'm</strong> － ①地下水位 <strong>GL-' + wlGL.toFixed(2) + 'm</strong> ＝ 合わせるべき<strong>②実水位は 【 ' + targetActual + ' m 】</strong> です。';
+        }
+
+        msgEl.innerHTML = html;
+
+        candidates.forEach(cVal => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "btn btn-outline btn-sm";
+          const diffCm = Math.round((holeLen - parseFloat(cVal)) * 100);
+          b.textContent = "③ GL-" + cVal + "m をセット (孔底+" + diffCm + "cm)";
+          b.addEventListener("click", () => {
+            f.sensorDepthGL = cVal;
+            const sInp = document.querySelector('[data-lg="sensorDepthGL"]');
+            if (sInp) sInp.value = cVal;
+            updateLoggerEvaluationsAndCalculations();
+            saveStateToDB();
+          });
+          btnBox.appendChild(b);
+        });
+      }
+    }
+
+    // Build & Print A4 NetLG-301N Checksheet
+    function printNetLGChecksheet() {
+      const f = appState.loggerData.fields;
+      const area = document.getElementById("printChecksheetArea");
+
+      let strainRowsHtml = "";
+      for (let i = 0; i < 30; i++) {
+        const r = appState.loggerData.strainCh[i];
+        strainRowsHtml +=
+          '<tr>' +
+            '<td>' + r.ch + '</td>' +
+            '<td>' + escapeHtml(r.depth || "") + '</td>' +
+            '<td>' + escapeHtml(r.rRB || "") + ' Ω</td>' +
+            '<td>' + escapeHtml(r.rBW || "") + ' Ω</td>' +
+            '<td>' + escapeHtml(r.rGR || "") + ' Ω</td>' +
+            '<td>' + escapeHtml(r.insul || "") + ' MΩ</td>' +
+            '<td>' + escapeHtml(r.offset || "") + '</td>' +
+            '<td>' + escapeHtml(r.initVal || "") + '</td>' +
+            '<td>' + escapeHtml(r.memo || "") + '</td>' +
+          '</tr>';
+      }
+
+      area.innerHTML =
+        '<div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:6px; border-bottom:2px solid #000; padding-bottom:4px;">' +
+          '<div><strong>地点 No. ' + escapeHtml(f.siteNo) + '</strong> &nbsp;&nbsp; <strong>地点名：' + escapeHtml(f.siteName) + '</strong></div>' +
+          '<div style="font-size:12pt; font-weight:bold;">設置チェックシート（ひずみ・水位データ集録装置 NetLG-301N）</div>' +
+          '<div>実施日：' + escapeHtml(f.workDate) + ' &nbsp; 天候：' + escapeHtml(f.weather) + ' &nbsp; 実施者：' + escapeHtml(f.worker) + '</div>' +
+        '</div>' +
+        '<table class="print-table">' +
+          '<tr>' +
+            '<th style="width:12%;">【集録装置】</th>' +
+            '<td>型式: ' + escapeHtml(f.loggerModel) + ' / 製造番号 No.' + escapeHtml(f.loggerSerial) + ' / ROM:' + escapeHtml(f.romVer) + ' / 製造年月:' + escapeHtml(f.loggerMfgDate) + '</td>' +
+            '<th style="width:12%;">【水位センサ】</th>' +
+            '<td>型式: ' + escapeHtml(f.wlModel) + ' / 製造番号 No.' + escapeHtml(f.wlSerial) + ' / 製造年月:' + escapeHtml(f.wlMfgDate) + '</td>' +
+            '<th style="width:10%;">【観測】</th>' +
+            '<td>' + escapeHtml(f.obsMode) + '</td>' +
+          '</tr>' +
+        '</table>' +
+        '<table class="print-table">' +
+          '<tr>' +
+            '<th>アドレス #</th><td>' + escapeHtml(f.netAddr) + '</td>' +
+            '<th>水位インターバル</th><td>' + escapeHtml(f.wlInterval) + ' (' + escapeHtml(f.wlRecTime) + ')</td>' +
+            '<th>ひずみインターバル</th><td>' + escapeHtml(f.stInterval) + ' (' + escapeHtml(f.stRecTime) + ')</td>' +
+            '<th>増設ユニット/ch数</th><td>' + escapeHtml(f.expUnit) + ' (' + escapeHtml(f.totalCh) + ' ch)</td>' +
+          '</tr>' +
+          '<tr>' +
+            '<th>電源・電池</th><td colspan="3">外部: ' + escapeHtml(f.voltExt) + 'V / メイン電池: <strong>' + escapeHtml(f.voltMain) + 'V</strong> / サブ電池: ' + escapeHtml(f.voltSub) + 'V</td>' +
+            '<th>内部温度/時計/フィルタ</th><td colspan="3">' + escapeHtml(f.tempInternal) + '℃ / 時計:' + escapeHtml(f.clockCheck) + ' / フィルタ:' + escapeHtml(f.noiseFilter) + ' / 方向線:' + escapeHtml(f.pipeDir) + '</td>' +
+          '</tr>' +
+          '<tr>' +
+            '<th>孔内・水位関係</th>' +
+            '<td colspan="7">地表面標高: EL.' + escapeHtml(f.groundElev) + 'm / 立上り: ' + escapeHtml(f.standpipe) + 'm / 孔長: GL-' + escapeHtml(f.boreholeLength) + 'm / <strong>①地下水位: GL-' + escapeHtml(f.waterLevelGL) + 'm</strong> / <strong>②実水位: ' + escapeHtml(f.actualWaterLevel) + 'm</strong> / <strong>③センサ深度: GL-' + escapeHtml(f.sensorDepthGL) + 'm</strong> / 標高水位: EL.' + escapeHtml(f.elevWaterLevel) + 'm</td>' +
+          '</tr>' +
+          '<tr>' +
+            '<th>水位・ひずみ設定</th>' +
+            '<td colspan="7">センサ係数: <strong>' + escapeHtml(f.sensorCoeff) + '</strong> / 水位オフセット: ' + escapeHtml(f.wlOffset) + 'm / 転送: ' + escapeHtml(f.transferData) + ' / ひずみ初期値時刻: ' + escapeHtml(f.strainInitTimeMode) + '(' + escapeHtml(f.strainInitTimeVal) + ') / 極性反転: ' + escapeHtml(f.strainPolarity) + ' / 記録開始: ' + escapeHtml(f.recStartTime) + ' / 開始時地下水位: GL-' + escapeHtml(f.startWL_GL) + 'm (手測り GL-' + escapeHtml(f.startManual_GL) + 'm)</td>' +
+          '</tr>' +
+        '</table>' +
+        '<table class="print-table">' +
+          '<thead><tr><th>ch</th><th>深度/メモ</th><th>赤－黒</th><th>黒－白</th><th>緑－赤</th><th>絶縁(白-E)</th><th>オフセット</th><th>開始時データ</th><th>備考</th></tr></thead>' +
+          '<tbody>' + strainRowsHtml + '</tbody>' +
+        '</table>';
+
+      window.print();
+    }
+
+    /*************************************************************************
+     * 5. 計測値モーダル & 写真ツール描画エンジン
+     *************************************************************************/
+    let pendingModalCallback = null;
+    let currentModalItem = null;
+
+    function checkNeedsValueModal(item) {
+      if (!item) return false;
+      if (item.promptType) return true;
+      const t = String(item.text || "");
+      return t.indexOf("〇") !== -1 || t.indexOf("○") !== -1;
+    }
+
+    function buildReplacedCaption(templateText, valStr) {
+      return String(templateText).split("〇").join(valStr).split("○").join(valStr);
+    }
+
+    function evaluateModalRule(item, rawVal) {
+      const num = parseFloat(rawVal);
+      if (isNaN(num)) return { valid: false, message: "数値を入力してください。" };
+      if (item.promptType === "cm_min") {
+        return num >= item.minVal
+          ? { valid: true, message: "✅ 基準適合：計測値 " + num + "cm （基準: " + item.minVal + "cm以上）" }
+          : { valid: false, message: "⚠️ 基準未達：計測値 " + num + "cm は基準（" + item.minVal + "cm以上）未満です！" };
+      }
+      if (item.promptType === "cm_range") {
+        return num >= item.minVal
+          ? { valid: true, message: "✅ 基準適合：計測値 " + num + "cm （基準目安: " + item.minVal + "～" + item.maxVal + "cm）" }
+          : { valid: false, message: "⚠️ 基準未達：計測値 " + num + "cm は基準（" + item.minVal + "cm以上）未満です！" };
+      }
+      if (item.promptType === "year_limit") {
+        const age = new Date().getFullYear() - num;
+        return (age >= 0 && age <= item.maxAgeYears)
+          ? { valid: true, message: "✅ 基準適合：製造年 " + num + "年 （経過 約" + age + "年 / 3年以内）" }
+          : { valid: false, message: "⚠️ 期限注意：製造年 " + num + "年 （使用開始から3年以内が限度）" };
+      }
+      return { valid: true, message: "入力値: " + num };
+    }
+
+    function openValueModal(item, onComplete) {
+      currentModalItem = item;
+      pendingModalCallback = onComplete;
+      const modal = document.getElementById("valueModal");
+      const inputEl = document.getElementById("modalValueInput");
+      document.getElementById("modalTitle").textContent = "📏 「" + item.text.split("\n").join(" ") + "」の数値入力";
+      document.getElementById("modalRuleBox").textContent = item.note || "〇に入る数値を入力してください。";
+      document.getElementById("modalUnitSpan").textContent = item.unit || "cm";
+      inputEl.value = item.defaultVal !== undefined ? item.defaultVal : "";
+
+      function updateLive() {
+        const val = inputEl.value.trim();
+        document.getElementById("modalPreviewCaption").textContent = buildReplacedCaption(item.text, val || "〇");
+        const fb = document.getElementById("modalValidationMsg");
+        if (!val) { fb.style.display = "none"; return; }
+        const res = evaluateModalRule(item, val);
+        fb.style.display = "block";
+        fb.className = "validation-feedback " + (res.valid ? "ok" : "ng");
+        fb.textContent = res.message;
+      }
+      inputEl.oninput = updateLive;
+      updateLive();
+      modal.style.display = "flex";
+      setTimeout(() => { inputEl.focus(); inputEl.select(); }, 50);
+    }
+
+    function closeValueModal() {
+      document.getElementById("valueModal").style.display = "none";
+      pendingModalCallback = null;
+      currentModalItem = null;
+    }
+
+    const TARGET_W = 1400;
+    const TARGET_H = 1050;
+
+    function isImageFile(file) {
+      if (!file) return false;
+      if (file.type && file.type.indexOf("image/") === 0) return true;
+      const name = String(file.name || "").toLowerCase();
+      return [".jpg", ".jpeg", ".png", ".webp", ".gif", ".bmp", ".heic", ".heif"].some(ext => name.endsWith(ext));
+    }
+
+    function processUploadedImageFile(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = TARGET_W; canvas.height = TARGET_H;
+            const ctx = canvas.getContext("2d");
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(0, 0, TARGET_W, TARGET_H);
+            const imgRatio = img.width / img.height;
+            const targetRatio = TARGET_W / TARGET_H;
+            let drawW, drawH, offsetX, offsetY;
+            if (imgRatio >= 1.0) {
+              if (imgRatio > targetRatio) {
+                drawH = TARGET_H; drawW = img.width * (TARGET_H / img.height); offsetX = (TARGET_W - drawW) / 2; offsetY = 0;
+              } else {
+                drawW = TARGET_W; drawH = img.height * (TARGET_W / img.width); offsetX = 0; offsetY = (TARGET_H - drawH) / 2;
+              }
+            } else {
+              drawH = TARGET_H; drawW = img.width * (TARGET_H / img.height); offsetX = (TARGET_W - drawW) / 2; offsetY = 0;
+            }
+            ctx.drawImage(img, offsetX, offsetY, drawW, drawH);
+            resolve(canvas.toDataURL("image/jpeg", 0.88));
+          };
+          img.onerror = reject;
+          img.src = e.target.result;
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function renderCompositePhotoDataUrl(photo) {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          canvas.width = TARGET_W; canvas.height = TARGET_H;
+          const ctx = canvas.getContext("2d");
+          ctx.fillStyle = "#ffffff";
+          ctx.fillRect(0, 0, TARGET_W, TARGET_H);
+
+          ctx.save();
+          const rot = (photo.rotation || 0) % 360;
+          if (rot === 0) {
+            ctx.drawImage(img, 0, 0, TARGET_W, TARGET_H);
+          } else {
+            ctx.translate(TARGET_W / 2, TARGET_H / 2);
+            ctx.rotate((rot * Math.PI) / 180);
+            if (rot === 90 || rot === 270) {
+              const s = Math.min(TARGET_W / TARGET_H, TARGET_H / TARGET_W);
+              ctx.drawImage(img, (-TARGET_W * s) / 2, (-TARGET_H * s) / 2, TARGET_W * s, TARGET_H * s);
+            } else {
+              ctx.drawImage(img, -TARGET_W / 2, -TARGET_H / 2, TARGET_W, TARGET_H);
+            }
+          }
+          ctx.restore();
+
+          const text = (photo.caption || "").trim();
+          const style = appState.captionStyle;
+          if (text && (style === "overlay-bl" || style === "overlay-br")) {
+            const scale = (Number(appState.fontSizeScale) || 100) / 100;
+            const baseFontSize = Math.round(48 * scale);
+            const fontFamily = '"Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif';
+            ctx.font = "700 " + baseFontSize + "px " + fontFamily;
+
+            const maxBoxWidth = TARGET_W * 0.92;
+            const padX = Math.round(38 * scale);
+            const padY = Math.round(22 * scale);
+            const lines = wrapJapaneseText(ctx, text, maxBoxWidth - padX * 2);
+            const lineHeight = Math.round(baseFontSize * 1.3);
+
+            let maxLineW = 0;
+            lines.forEach(l => { const m = ctx.measureText(l).width; if (m > maxLineW) maxLineW = m; });
+            let boxW = maxLineW + padX * 2;
+            const minW = appState.boxWidthMode === "wide" ? TARGET_W * 0.42 : TARGET_W * 0.25;
+            if (boxW < minW) boxW = minW;
+            if (boxW > maxBoxWidth) boxW = maxBoxWidth;
+
+            const boxH = lines.length * lineHeight + padY * 2;
+            const boxX = style === "overlay-br" ? TARGET_W - boxW - 26 : 26;
+            const boxY = TARGET_H - boxH - 24;
+
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(boxX, boxY, boxW, boxH);
+            ctx.lineWidth = Math.max(4, Math.round(6 * scale));
+            ctx.strokeStyle = "#000000";
+            ctx.strokeRect(boxX, boxY, boxW, boxH);
+
+            ctx.fillStyle = "#000000";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            const startY = boxY + padY + lineHeight / 2;
+            lines.forEach((line, idx) => ctx.fillText(line, boxX + boxW / 2, startY + idx * lineHeight));
+          }
+          resolve(canvas.toDataURL("image/jpeg", 0.90));
+        };
+        img.src = photo.rawDataUrl;
+      });
+    }
+
+    function wrapJapaneseText(ctx, text, maxWidth) {
+      const normalized = String(text).split("\r\n").join("\n").split("\r").join("\n");
+      const explicitLines = normalized.split("\n");
+      const result = [];
+      for (const rawLine of explicitLines) {
+        let current = "";
+        for (const ch of rawLine) {
+          const test = current + ch;
+          if (ctx.measureText(test).width > maxWidth && current.length > 0) {
+            result.push(current); current = ch;
+          } else { current = test; }
+        }
+        if (current) result.push(current);
+      }
+      return result.length > 0 ? result : [""];
+    }
+
+    function syncControlsFromState() {
+      document.getElementById("purposeSelect").value = appState.selectedPurpose || "boring_checklist";
+      document.getElementById("projectTitle").value = appState.projectTitle || "";
+      document.getElementById("pageOrientation").value = appState.pageOrientation || "landscape";
+      document.getElementById("layoutMode").value = appState.layoutMode || "4";
+      document.getElementById("captionStyle").value = appState.captionStyle || "overlay-bl";
+      document.getElementById("fontSizeScale").value = appState.fontSizeScale || 100;
+      document.getElementById("fontSizeVal").textContent = "標準 " + (appState.fontSizeScale || 100) + "%";
+      document.getElementById("boxWidthMode").value = appState.boxWidthMode || "auto";
+    }
+
+    function renderCandidateChips() {
+      const wrapper = document.getElementById("categoriesWrapper");
+      const catSelect = document.getElementById("newCandidateCatSelect");
+      wrapper.innerHTML = ""; catSelect.innerHTML = "";
+      const pObj = getCurrentPurposeObj();
+
+      pObj.categories.forEach((cat, catIdx) => {
+        const opt = document.createElement("option");
+        opt.value = String(catIdx); opt.textContent = cat.name;
+        catSelect.appendChild(opt);
+
+        const block = document.createElement("div");
+        block.className = "category-block";
+        block.innerHTML = '<div class="category-header"><span>' + escapeHtml(cat.name) + '</span><span>' + cat.items.length + '項目</span></div>';
+        const chipBox = document.createElement("div");
+        chipBox.className = "chip-container";
+
+        cat.items.forEach((item, itemIdx) => {
+          const chip = document.createElement("div");
+          chip.className = "caption-chip" + ((item.note || item.promptType) ? " has-rule" : "");
+          chip.innerHTML = '<span>' + escapeHtml(item.text.split("\n").join(" / ")) + '</span>' +
+            (item.promptType ? '<span class="rule-badge">数値入力</span>' : (item.note ? '<span class="rule-badge">※基準</span>' : ''));
+
+          chip.addEventListener("click", () => handleCandidateSelection(item, activePhotoId));
+
+          const del = document.createElement("span");
+          del.className = "del-chip"; del.textContent = "×";
+          del.addEventListener("click", (e) => {
+            e.stopPropagation();
+            cat.items.splice(itemIdx, 1);
+            renderCandidateChips(); refreshAllViews(); saveStateToDB();
+          });
+          chip.appendChild(del);
+          chipBox.appendChild(chip);
+        });
+        block.appendChild(chipBox);
+        wrapper.appendChild(block);
+      });
+    }
+
+    function renderChecklistCaptureView() {
+      const container = document.getElementById("checklistCaptureList");
+      container.innerHTML = "";
+      const pObj = getCurrentPurposeObj();
+
+      pObj.categories.forEach((cat) => {
+        const card = document.createElement("div");
+        card.className = "checklist-cat-card";
+        card.innerHTML = '<div class="checklist-cat-title"><span>📂 ' + escapeHtml(cat.name) + '</span><span>' + cat.items.length + ' 項目</span></div>';
+
+        cat.items.forEach((item) => {
+          const prefix = item.text.split("（")[0];
+          const matched = appState.photos.filter(p => (p.templateKey === item.text) || (p.caption === item.text) || (item.promptType && p.caption && p.caption.indexOf(prefix + "（") === 0));
+          const isDone = matched.length > 0;
+          const row = document.createElement("div");
+          row.className = "checklist-row" + (isDone ? " done-row" : "");
+
+          const statusBadge = isDone
+            ? '<span style="background:#16a34a;color:#fff;font-size:0.7rem;padding:2px 7px;border-radius:10px;">✅ 撮影済(' + matched.length + ')</span>'
+            : '<span style="background:#e2e8f0;color:#475569;font-size:0.7rem;padding:2px 7px;border-radius:10px;">未撮影</span>';
+
+          const infoDiv = document.createElement("div");
+          infoDiv.innerHTML = '<div style="font-weight:700;font-size:0.88rem;display:flex;gap:6px;align-items:center;">' + statusBadge + '<span>・' + escapeHtml(item.text.split("\n").join(" / ")) + '</span></div>' +
+            (item.note ? '<div style="font-size:0.74rem;color:#b45309;margin-top:2px;">' + escapeHtml(item.note) + '</div>' : '');
+
+          const rightDiv = document.createElement("div");
+          rightDiv.className = "checklist-thumbs";
+          matched.forEach(mp => {
+            const img = document.createElement("img");
+            img.className = "mini-thumb"; img.src = mp.compositeCache || mp.rawDataUrl;
+            rightDiv.appendChild(img);
+          });
+
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "btn " + (isDone ? "btn-outline" : "btn-primary") + " btn-sm";
+          btn.textContent = isDone ? "📷 追加撮影" : "📷 撮影 / 写真選択";
+          btn.addEventListener("click", () => {
+            pendingDirectCaptureItem = item;
+            document.getElementById("directItemFileInput").click();
+          });
+          rightDiv.appendChild(btn);
+          row.appendChild(infoDiv); row.appendChild(rightDiv);
+          card.appendChild(row);
+        });
+        container.appendChild(card);
+      });
+    }
+
+    function handleCandidateSelection(item, targetPhotoId) {
+      if (appState.photos.length === 0) {
+        alert("先に写真を追加してください。"); return;
+      }
+      let target = appState.photos.find(p => p.id === targetPhotoId) || appState.photos[0];
+      activePhotoId = target.id;
+      const banner = document.getElementById("activeRuleBanner");
+      if (item.note) { banner.style.display = "block"; banner.textContent = "📌 " + item.note; }
+      else { banner.style.display = "none"; }
+
+      if (checkNeedsValueModal(item)) {
+        openValueModal(item, async (finalCap, finalNote) => {
+          target.caption = finalCap; target.templateKey = item.text; target.note = finalNote || item.note || "";
+          await refreshAllViews(); saveStateToDB();
+        });
+      } else {
+        target.caption = item.text; target.templateKey = item.text; target.note = item.note || "";
+        refreshAllViews(); saveStateToDB();
+      }
+    }
+
+    function buildOptgroupOptionsHtml() {
+      const pObj = getCurrentPurposeObj();
+      let html = '<option value="">▼ 点検項目から選択...</option>';
+      pObj.categories.forEach((cat, cIdx) => {
+        html += '<optgroup label="【' + escapeHtml(cat.name) + '】">';
+        cat.items.forEach((item, iIdx) => {
+          html += '<option value="' + cIdx + '_' + iIdx + '">・' + escapeHtml(item.text.split("\n").join(" ")) + '</option>';
+        });
+        html += '</optgroup>';
+      });
+      return html;
+    }
+
+    async function renderPhotoGrid() {
+      const grid = document.getElementById("photoGrid");
+      const total = appState.photos.length;
+      const perPage = getPhotosPerPage();
+      const totalPages = Math.ceil(total / perPage);
+      document.getElementById("photoCountBadge").textContent = total + " 枚";
+      document.getElementById("pageSummaryText").textContent = "全 " + total + " 枚 （" + (appState.pageOrientation === "portrait" ? "A4縦" : "A4横") + ": " + totalPages + " ページ）";
+
+      if (total === 0) {
+        grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1;"><h3>現場写真がまだ選択されていません</h3><p style="font-size:0.84rem;margin-top:6px;">左パネルから写真を一括追加するか、「📋 現場チェックリスト順 撮影モード」または「📟 ② NetLG-301N 設置作業手順」から撮影してください。</p></div>';
+        return;
+      }
+
+      if (!activePhotoId || !appState.photos.some(p => p.id === activePhotoId)) activePhotoId = appState.photos[0].id;
+      grid.innerHTML = "";
+      const selectOptionsHtml = buildOptgroupOptionsHtml();
+
+      for (let i = 0; i < appState.photos.length; i++) {
+        const photo = appState.photos[i];
+        const compositeUrl = await renderCompositePhotoDataUrl(photo);
+        photo.compositeCache = compositeUrl;
+
+        const card = document.createElement("div");
+        card.className = "photo-card " + (photo.id === activePhotoId ? "active-card" : "");
+        card.innerHTML =
+          '<div class="photo-card-header">' +
+            '<span><span class="photo-num-badge">No.' + (i + 1) + '</span></span>' +
+            '<div style="display:flex;gap:4px;">' +
+              '<button type="button" class="btn btn-outline btn-sm move-up-btn" ' + (i === 0 ? "disabled" : "") + '>◀</button>' +
+              '<button type="button" class="btn btn-outline btn-sm move-down-btn" ' + (i === total - 1 ? "disabled" : "") + '>▶</button>' +
+              '<button type="button" class="btn btn-outline btn-sm rotate-btn">↻</button>' +
+              '<button type="button" class="btn btn-danger btn-sm delete-btn">✕</button>' +
+            '</div>' +
+          '</div>' +
+          '<div class="canvas-wrapper"><img src="' + compositeUrl + '" class="card-preview-img" data-id="' + photo.id + '"></div>' +
+          '<div class="photo-card-body">' +
+            '<input type="text" class="caption-input" data-id="' + photo.id + '" value="' + escapeHtml((photo.caption || "").split("\n").join(" / ")) + '" placeholder="キャプション ( / で改行)">' +
+            '<select class="quick-select">' + selectOptionsHtml + '</select>' +
+            '<div class="card-note-box" style="display:' + (photo.note ? 'block' : 'none') + ';">' + escapeHtml(photo.note || "") + '</div>' +
+          '</div>';
+
+        card.addEventListener("click", () => { activePhotoId = photo.id; renderPhotoGrid(); });
+        card.querySelector(".caption-input").addEventListener("input", async (e) => {
+          photo.caption = e.target.value.split(" / ").join("\n");
+          photo.compositeCache = await renderCompositePhotoDataUrl(photo);
+          card.querySelector(".card-preview-img").src = photo.compositeCache;
+          saveStateToDB();
+        });
+        card.querySelector(".quick-select").addEventListener("change", (e) => {
+          if (!e.target.value) return;
+          const [cIdx, iIdx] = e.target.value.split("_").map(Number);
+          e.target.value = "";
+          const item = getCurrentPurposeObj().categories[cIdx].items[iIdx];
+          if (item) handleCandidateSelection(item, photo.id);
+        });
+        card.querySelector(".move-up-btn").addEventListener("click", async (e) => {
+          e.stopPropagation();
+          if (i > 0) { [appState.photos[i - 1], appState.photos[i]] = [appState.photos[i], appState.photos[i - 1]]; await refreshAllViews(); saveStateToDB(); }
+        });
+        card.querySelector(".move-down-btn").addEventListener("click", async (e) => {
+          e.stopPropagation();
+          if (i < total - 1) { [appState.photos[i + 1], appState.photos[i]] = [appState.photos[i], appState.photos[i + 1]]; await refreshAllViews(); saveStateToDB(); }
+        });
+        card.querySelector(".rotate-btn").addEventListener("click", async (e) => {
+          e.stopPropagation(); photo.rotation = ((photo.rotation || 0) + 90) % 360; await refreshAllViews(); saveStateToDB();
+        });
+        card.querySelector(".delete-btn").addEventListener("click", async (e) => {
+          e.stopPropagation(); appState.photos.splice(i, 1); await refreshAllViews(); saveStateToDB();
+        });
+        grid.appendChild(card);
+      }
+    }
+
+    async function renderSheetsPreview() {
+      const container = document.getElementById("sheetsContainer");
+      container.innerHTML = "";
+      if (appState.photos.length === 0) {
+        container.innerHTML = '<div class="empty-state" style="width:100%;">写真がありません。</div>'; return;
+      }
+      const pages = await renderFullA4PagesDataUrls();
+      const isPortrait = appState.pageOrientation === "portrait";
+      pages.forEach((pObj, idx) => {
+        const card = document.createElement("div");
+        card.className = "sheet-preview-card " + (isPortrait ? "portrait-card" : "");
+        card.innerHTML = '<div class="sheet-preview-bar"><span>📄 Page ' + (idx + 1) + ' / ' + pages.length + '</span><span>' + (isPortrait ? "A4縦" : "A4横") + '</span></div><img class="sheet-preview-img" src="' + pObj.dataUrl + '">';
+        container.appendChild(card);
+      });
+    }
+
+    async function refreshAllViews() {
+      await renderPhotoGrid();
+      if (currentViewMode === "checklist") renderChecklistCaptureView();
+      else if (currentViewMode === "preview") await renderSheetsPreview();
+    }
+
+    function escapeHtml(str) {
+      return String(str).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split('"').join("&quot;");
+    }
+
+    function sanitizeFilename(name) {
+      const raw = (name || "現場帳票").trim() || "現場帳票";
+      let out = raw;
+      ['\\', '/', ':', '*', '?', '"', '<', '>', '|'].forEach(ch => { out = out.split(ch).join("_"); });
+      return out;
+    }
+
+    function stripExtension(filename) {
+      const s = String(filename || "");
+      const idx = s.lastIndexOf(".");
+      return idx > 0 ? s.slice(0, idx) : s;
+    }
+
+    /*************************************************************************
+     * 6. Word (.docx) & PDF (.pdf) ネイティブ出力エンジン
+     *************************************************************************/
+    async function renderFullA4PagesDataUrls() {
+      const isLandscape = appState.pageOrientation !== "portrait";
+      const PAGE_W = isLandscape ? 2339 : 1654;
+      const PAGE_H = isLandscape ? 1654 : 2339;
+      const perPage = getPhotosPerPage();
+      const totalPages = Math.ceil(appState.photos.length / perPage);
+
+      for (const photo of appState.photos) photo.compositeCache = await renderCompositePhotoDataUrl(photo);
+
+      const fontFamily = '"Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif';
+      const pageResults = [];
+
+      for (let p = 0; p < totalPages; p++) {
+        const pageCanvas = document.createElement("canvas");
+        pageCanvas.width = PAGE_W; pageCanvas.height = PAGE_H;
+        const ctx = pageCanvas.getContext("2d");
+        ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, PAGE_W, PAGE_H);
+
+        const marginX = isLandscape ? 64 : 68;
+        const marginBottom = isLandscape ? 54 : 68;
+        let topY = isLandscape ? 54 : 68;
+
+        if (appState.projectTitle && appState.projectTitle.trim() !== "") {
+          ctx.fillStyle = "#0f172a"; ctx.font = "700 32px " + fontFamily;
+          ctx.fillText(appState.projectTitle.trim(), marginX, topY);
+          topY += 52;
+        }
+
+        const availW = PAGE_W - marginX * 2;
+        const availH = PAGE_H - topY - marginBottom;
+        const pagePhotos = appState.photos.slice(p * perPage, (p + 1) * perPage);
+
+        let cols = 2, rows = 2;
+        if (appState.layoutMode === "2-h") { cols = 2; rows = 1; }
+        else if (appState.layoutMode === "2-v" || appState.layoutMode === "2") { cols = 1; rows = 2; }
+        else if (appState.layoutMode === "1") { cols = 1; rows = 1; }
+
+        const gapX = cols > 1 ? 36 : 0;
+        const capSpace = appState.captionStyle === "below" ? 48 : 0;
+        const gapY = rows > 1 ? (32 + capSpace) : capSpace;
+
+        const maxSlotW = (availW - gapX * (cols - 1)) / cols;
+        const maxSlotH = (availH - gapY * (rows - 1) - (rows === 1 ? capSpace : 0)) / rows;
+
+        let drawW = maxSlotW, drawH = drawW * 0.75;
+        if (drawH > maxSlotH) { drawH = maxSlotH; drawW = drawH * (4 / 3); }
+
+        const startX = marginX + (availW - (cols * drawW + (cols - 1) * gapX)) / 2;
+        const startY = topY + (availH - (rows * drawH + (rows - 1) * gapY + (rows === 1 ? capSpace : 0))) / 2;
+
+        for (let idx = 0; idx < pagePhotos.length; idx++) {
+          const r = Math.floor(idx / cols), c = idx % cols;
+          const x = startX + c * (drawW + gapX), y = startY + r * (drawH + gapY);
+          const img = await loadImageElement(pagePhotos[idx].compositeCache);
+          ctx.drawImage(img, x, y, drawW, drawH);
+          if (appState.captionStyle === "below" && pagePhotos[idx].caption) {
+            ctx.fillStyle = "#000"; ctx.font = "700 28px " + fontFamily; ctx.textAlign = "center";
+            ctx.fillText(pagePhotos[idx].caption.split("\n").join(" "), x + drawW / 2, y + drawH + 34);
+          }
+        }
+        pageResults.push({ dataUrl: pageCanvas.toDataURL("image/jpeg", 0.92), width: PAGE_W, height: PAGE_H, isLandscape });
+      }
+      return pageResults;
+    }
+
+    function dataUrlToUint8Array(dataUrl) {
+      const binary = atob(dataUrl.split(",")[1]);
+      const bytes = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+      return bytes;
+    }
+
+    function buildNativePdfFromPages(pageResults) {
+      const pageImages = pageResults.map(p => ({
+        bytes: dataUrlToUint8Array(p.dataUrl), width: p.width, height: p.height,
+        pdfW: p.isLandscape ? "841.89" : "595.28", pdfH: p.isLandscape ? "595.28" : "841.89"
+      }));
+      const N = pageImages.length, totalObjects = 2 + N * 3;
+      const offsets = new Array(totalObjects + 1).fill(0), chunks = [];
+      let currentLen = 0;
+      const encoder = new TextEncoder();
+      const pushStr = (s) => { const b = encoder.encode(s); chunks.push(b); currentLen += b.length; };
+      const pushBytes = (b) => { chunks.push(b); currentLen += b.length; };
+
+      pushStr("%PDF-1.4\n%\xE2\xE3\xCF\xD3\n");
+      offsets[1] = currentLen; pushStr("1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n");
+      const kids = Array.from({ length: N }, (_, i) => (3 + i * 3) + " 0 R");
+      offsets[2] = currentLen; pushStr("2 0 obj\n<< /Type /Pages /Kids [ " + kids.join(" ") + " ] /Count " + N + " >>\nendobj\n");
+
+      for (let i = 0; i < N; i++) {
+        const pId = 3 + i * 3, cId = 4 + i * 3, iId = 5 + i * 3, img = pageImages[i];
+        offsets[pId] = currentLen;
+        pushStr(pId + " 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 " + img.pdfW + " " + img.pdfH + "] /Resources << /XObject << /Im" + i + " " + iId + " 0 R >> >> /Contents " + cId + " 0 R >>\nendobj\n");
+        const cs = "q\n" + img.pdfW + " 0 0 " + img.pdfH + " 0 0 cm\n/Im" + i + " Do\nQ\n";
+        offsets[cId] = currentLen;
+        pushStr(cId + " 0 obj\n<< /Length " + cs.length + " >>\nstream\n" + cs + "endstream\nendobj\n");
+        offsets[iId] = currentLen;
+        pushStr(iId + " 0 obj\n<< /Type /XObject /Subtype /Image /Width " + img.width + " /Height " + img.height + " /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length " + img.bytes.length + " >>\nstream\n");
+        pushBytes(img.bytes); pushStr("\nendstream\nendobj\n");
+      }
+      const xrefOffset = currentLen;
+      pushStr("xref\n0 " + (totalObjects + 1) + "\n0000000000 65535 f \n");
+      for (let id = 1; id <= totalObjects; id++) pushStr(String(offsets[id]).padStart(10, "0") + " 00000 n \n");
+      pushStr("trailer\n<< /Size " + (totalObjects + 1) + " /Root 1 0 R >>\nstartxref\n" + xrefOffset + "\n%%EOF");
+      return new Blob(chunks, { type: "application/pdf" });
+    }
+
+    const CRC_TABLE = (() => {
+      const t = new Uint32Array(256);
+      for (let n = 0; n < 256; n++) {
+        let c = n;
+        for (let k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+        t[n] = c >>> 0;
+      }
+      return t;
+    })();
+
+    function crc32(bytes) {
+      let crc = 0xFFFFFFFF;
+      for (let i = 0; i < bytes.length; i++) crc = (crc >>> 8) ^ CRC_TABLE[(crc ^ bytes[i]) & 0xFF];
+      return (crc ^ 0xFFFFFFFF) >>> 0;
+    }
+
+    function createZipBlob(files) {
+      const encoder = new TextEncoder(), localParts = [], centralParts = [];
+      let offset = 0;
+      for (const file of files) {
+        const nameBytes = encoder.encode(file.name), dataBytes = file.data;
+        const crc = crc32(dataBytes), size = dataBytes.length;
+        const lh = new Uint8Array(30 + nameBytes.length), lv = new DataView(lh.buffer);
+        lv.setUint32(0, 0x04034b50, true); lv.setUint16(4, 20, true); lv.setUint32(14, crc, true);
+        lv.setUint32(18, size, true); lv.setUint32(22, size, true); lv.setUint16(26, nameBytes.length, true);
+        lh.set(nameBytes, 30); localParts.push(lh, dataBytes);
+
+        const ch = new Uint8Array(46 + nameBytes.length), cv = new DataView(ch.buffer);
+        cv.setUint32(0, 0x02014b50, true); cv.setUint16(4, 20, true); cv.setUint16(6, 20, true);
+        cv.setUint32(16, crc, true); cv.setUint32(20, size, true); cv.setUint32(24, size, true);
+        cv.setUint16(28, nameBytes.length, true); cv.setUint32(42, offset, true);
+        ch.set(nameBytes, 46); centralParts.push(ch);
+        offset += lh.length + size;
+      }
+      const centralSize = centralParts.reduce((a, b) => a + b.length, 0);
+      const eocd = new Uint8Array(22), ev = new DataView(eocd.buffer);
+      ev.setUint32(0, 0x06054b50, true); ev.setUint16(8, files.length, true); ev.setUint16(10, files.length, true);
+      ev.setUint32(12, centralSize, true); ev.setUint32(16, offset, true);
+      return new Blob([...localParts, ...centralParts, eocd], { type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document" });
+    }
+
+    function buildNativeDocxFromPhotos() {
+      const encoder = new TextEncoder(), isLandscape = appState.pageOrientation !== "portrait";
+      const perPage = getPhotosPerPage(), totalPages = Math.ceil(appState.photos.length / perPage);
+      const zipFiles = [
+        { name: "[Content_Types].xml", data: encoder.encode('<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Default Extension="jpg" ContentType="image/jpeg"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>') },
+        { name: "_rels/.rels", data: encoder.encode('<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>') }
+      ];
+      let rels = "";
+      appState.photos.forEach((p, i) => {
+        zipFiles.push({ name: "word/media/image" + (i + 1) + ".jpg", data: dataUrlToUint8Array(p.compositeCache) });
+        rels += '<Relationship Id="rIdImg' + (i + 1) + '" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/image' + (i + 1) + '.jpg"/>';
+      });
+      zipFiles.push({ name: "word/_rels/document.xml.rels", data: encoder.encode('<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' + rels + '</Relationships>') });
+
+      const makeDraw = (rId, id, cx, cy) => '<w:r><w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0"><wp:extent cx="' + cx + '" cy="' + cy + '"/><wp:docPr id="' + id + '" name="P' + id + '"/><a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:nvPicPr><pic:cNvPr id="' + id + '" name="P' + id + '"/><pic:cNvPicPr/></pic:nvPicPr><pic:blipFill><a:blip r:embed="' + rId + '"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill><pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="' + cx + '" cy="' + cy + '"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing></w:r>';
+
+      let cols = 2, rows = 2;
+      if (appState.layoutMode === "2-h") { cols = 2; rows = 1; }
+      else if (appState.layoutMode === "2-v") { cols = 1; rows = 2; }
+      else if (appState.layoutMode === "1") { cols = 1; rows = 1; }
+
+      const cy = isLandscape ? (rows === 2 ? 3100000 : 5800000) : (rows === 2 ? 2360000 : 4500000);
+      const cx = Math.round(cy * (4 / 3));
+      let bodyXml = "";
+
+      for (let p = 0; p < totalPages; p++) {
+        const startIdx = p * perPage;
+        bodyXml += '<w:tbl><w:tblPr><w:tblW w:w="5000" w:type="pct"/><w:jc w:val="center"/></w:tblPr>';
+        for (let r = 0; r < rows; r++) {
+          bodyXml += '<w:tr>';
+          for (let c = 0; c < cols; c++) {
+            const idx = startIdx + r * cols + c, photo = appState.photos[idx];
+            bodyXml += '<w:tc><w:tcPr><w:tcW w:w="' + (cols === 2 ? "2500" : "5000") + '" w:type="pct"/></w:tcPr>';
+            bodyXml += photo ? ('<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="40" w:after="40"/></w:pPr>' + makeDraw("rIdImg" + (idx + 1), idx + 1, cx, cy) + '</w:p>') : '<w:p/>';
+            bodyXml += '</w:tc>';
+          }
+          bodyXml += '</w:tr>';
+        }
+        bodyXml += '</w:tbl>';
+        if (p < totalPages - 1) bodyXml += '<w:p><w:r><w:br w:type="page"/></w:r></w:p>';
+      }
+
+      bodyXml += isLandscape
+        ? '<w:sectPr><w:pgSz w:w="16838" w:h="11906" w:orient="landscape"/><w:pgMar w:top="500" w:right="567" w:bottom="450" w:left="567"/></w:sectPr>'
+        : '<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="650" w:right="650" w:bottom="650" w:left="650"/></w:sectPr>';
+
+      zipFiles.push({ name: "word/document.xml", data: encoder.encode('<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"><w:body>' + bodyXml + '</w:body></w:document>') });
+      return createZipBlob(zipFiles);
+    }
+
+    function loadImageElement(src) {
+      return new Promise((resolve, reject) => { const i = new Image(); i.onload = () => resolve(i); i.onerror = reject; i.src = src; });
+    }
+
+    function triggerDownload(blob, filename) {
+      const url = URL.createObjectURL(blob), a = document.createElement("a");
+      a.href = url; a.download = filename; document.body.appendChild(a); a.click();
+      setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 500);
+    }
+
+    function showLoading(msg) { document.getElementById("loadingText").textContent = msg; document.getElementById("loadingOverlay").style.display = "flex"; }
+    function hideLoading() { document.getElementById("loadingOverlay").style.display = "none"; }
+
+    /*************************************************************************
+     * 7. タブ切替・ファイル読込・イベント初期化
+     *************************************************************************/
+    function switchMainModule(mod) {
+      appState.activeModule = mod;
+      const isPhoto = mod === "photo";
+      document.getElementById("tabModulePhoto").classList.toggle("active", isPhoto);
+      document.getElementById("tabModuleLogger").classList.toggle("active", !isPhoto);
+      document.getElementById("modulePhotoContainer").style.display = isPhoto ? "grid" : "none";
+      document.getElementById("moduleLoggerContainer").style.display = isPhoto ? "none" : "block";
+      document.getElementById("mobileSwitchModuleBtn").textContent = isPhoto ? "📟 301N設置へ" : "📷 写真帳へ";
+      saveStateToDB();
+    }
+
+    function switchLoggerSubTab(sub) {
+      document.getElementById("loggerSubTabWorkflow").classList.toggle("active", sub === "workflow");
+      document.getElementById("loggerSubTabSheet").classList.toggle("active", sub === "sheet");
+      document.getElementById("loggerSubTabStrain").classList.toggle("active", sub === "strain");
+      document.getElementById("loggerViewWorkflow").style.display = sub === "workflow" ? "grid" : "none";
+      document.getElementById("loggerViewSheet").style.display = sub === "sheet" ? "block" : "none";
+      document.getElementById("loggerViewStrain").style.display = sub === "strain" ? "block" : "none";
+    }
+
+    function switchWorkspaceView(mode) {
+      currentViewMode = mode;
+      document.getElementById("viewEditBtn").classList.toggle("active", mode === "edit");
+      document.getElementById("viewChecklistBtn").classList.toggle("active", mode === "checklist");
+      document.getElementById("viewPreviewBtn").classList.toggle("active", mode === "preview");
+      document.getElementById("editViewContainer").style.display = mode === "edit" ? "block" : "none";
+      document.getElementById("checklistViewContainer").style.display = mode === "checklist" ? "block" : "none";
+      document.getElementById("previewViewContainer").style.display = mode === "preview" ? "block" : "none";
+      if (mode === "checklist") renderChecklistCaptureView();
+      else if (mode === "preview") renderSheetsPreview();
+    }
+
+    async function handleFilesSelected(filesArray, fixedItem) {
+      if (!filesArray || filesArray.length === 0) return;
+      showLoading(filesArray.length + " 枚の写真を読み込み中...");
+      try {
+        const flatItems = getAllFlatItemsForCurrentPurpose();
+        let lastAdded = null;
+        for (let i = 0; i < filesArray.length; i++) {
+          const file = filesArray[i];
+          if (!isImageFile(file)) continue;
+          const normUrl = await processUploadedImageFile(file);
+          const itemToUse = fixedItem || flatItems[appState.photos.length % flatItems.length];
+          const p = {
+            id: "photo_" + Date.now() + "_" + i + "_" + Math.random().toString(36).slice(2, 6),
+            name: file.name, rawDataUrl: normUrl,
+            caption: itemToUse ? itemToUse.text : stripExtension(file.name),
+            templateKey: itemToUse ? itemToUse.text : "",
+            note: itemToUse && itemToUse.note ? itemToUse.note : "", rotation: 0
+          };
+          appState.photos.push(p); lastAdded = p;
+        }
+        if (lastAdded) activePhotoId = lastAdded.id;
+        await refreshAllViews(); await saveStateToDB();
+        if (fixedItem && lastAdded && checkNeedsValueModal(fixedItem)) {
+          openValueModal(fixedItem, async (cap, note) => {
+            lastAdded.caption = cap; lastAdded.note = note; await refreshAllViews(); saveStateToDB();
+          });
+        }
+      } finally { hideLoading(); }
+    }
+
+    window.addEventListener("DOMContentLoaded", async () => {
+      await loadStateFromDB();
+      syncControlsFromState();
+      renderCandidateChips();
+      renderLoggerWorkflow();
+      renderLoggerTablesAndInputs();
+      await refreshAllViews();
+      switchMainModule(appState.activeModule || "photo");
+
+      // Module Switching
+      document.getElementById("tabModulePhoto").addEventListener("click", () => switchMainModule("photo"));
+      document.getElementById("tabModuleLogger").addEventListener("click", () => switchMainModule("logger"));
+      document.getElementById("mobileSwitchModuleBtn").addEventListener("click", () => {
+        switchMainModule(appState.activeModule === "photo" ? "logger" : "photo");
+      });
+
+      // Logger Sub-tabs
+      document.getElementById("loggerSubTabWorkflow").addEventListener("click", () => switchLoggerSubTab("workflow"));
+      document.getElementById("loggerSubTabSheet").addEventListener("click", () => switchLoggerSubTab("sheet"));
+      document.getElementById("loggerSubTabStrain").addEventListener("click", () => switchLoggerSubTab("strain"));
+
+      // Bind all [data-lg] inputs
+      document.querySelectorAll("[data-lg]").forEach(el => {
+        el.addEventListener("input", (e) => {
+          const k = e.target.getAttribute("data-lg");
+          appState.loggerData.fields[k] = e.target.value;
+          updateLoggerEvaluationsAndCalculations();
+          saveStateToDB();
+        });
+      });
+
+      document.getElementById("checkAllPackBtn").addEventListener("click", () => {
+        PACKING_ITEMS.forEach((_, idx) => { appState.loggerData.packChecks["pk_" + idx] = true; });
+        renderLoggerWorkflow(); saveStateToDB();
+      });
+
+      document.getElementById("fillStandardResBtn").addEventListener("click", () => {
+        if (confirm("1〜30chの赤-黒・黒-白・緑-赤に「120」、絶縁抵抗に「100」を一括セットしますか？（入力済みの箇所は上書きされます）")) {
+          appState.loggerData.strainCh.forEach(r => { r.rRB = "120"; r.rBW = "120"; r.rGR = "120"; r.insul = "100"; });
+          renderLoggerTablesAndInputs(); saveStateToDB();
+        }
+      });
+
+      document.getElementById("printChecksheetBtn").addEventListener("click", printNetLGChecksheet);
+      document.getElementById("exportLoggerJsonBtn").addEventListener("click", () => document.getElementById("exportJsonBtn").click());
+      document.getElementById("resetLoggerBtn").addEventListener("click", () => {
+        if (confirm("NetLG-301N チェックシートの記入内容を初期状態にクリアしますか？（写真は消えません）")) {
+          appState.loggerData = createDefaultLoggerData();
+          renderLoggerWorkflow(); renderLoggerTablesAndInputs(); saveStateToDB();
+        }
+      });
+
+      // Photo Module Events
+      document.getElementById("purposeSelect").addEventListener("change", async (e) => {
+        appState.selectedPurpose = e.target.value;
+        renderCandidateChips(); await refreshAllViews(); saveStateToDB();
+      });
+
+      document.getElementById("modalCloseX").addEventListener("click", closeValueModal);
+      document.getElementById("modalSkipBtn").addEventListener("click", () => {
+        if (pendingModalCallback && currentModalItem) pendingModalCallback(currentModalItem.text, currentModalItem.note || "");
+        closeValueModal();
+      });
+      document.getElementById("modalConfirmBtn").addEventListener("click", () => {
+        if (pendingModalCallback && currentModalItem) {
+          const val = document.getElementById("modalValueInput").value.trim();
+          const rep = buildReplacedCaption(currentModalItem.text, val || "〇");
+          const ev = val ? evaluateModalRule(currentModalItem, val) : null;
+          pendingModalCallback(rep, ev ? ev.message : (currentModalItem.note || ""));
+        }
+        closeValueModal();
+      });
+
+      const iphoneModal = document.getElementById("iphoneGuideModal");
+      document.getElementById("openIphoneGuideBtn").addEventListener("click", () => { iphoneModal.style.display = "flex"; });
+      document.getElementById("closeIphoneGuideX").addEventListener("click", () => { iphoneModal.style.display = "none"; });
+      document.getElementById("closeIphoneGuideBtn").addEventListener("click", () => { iphoneModal.style.display = "none"; });
+
+      const fileInput = document.getElementById("fileInput");
+      fileInput.addEventListener("change", async (e) => {
+        const arr = Array.from(e.target.files || []);
+        e.target.value = "";
+        await handleFilesSelected(arr, null);
+      });
+
+      const directInput = document.getElementById("directItemFileInput");
+      directInput.addEventListener("change", async (e) => {
+        const arr = Array.from(e.target.files || []);
+        const item = pendingDirectCaptureItem;
+        pendingDirectCaptureItem = null;
+        e.target.value = "";
+        await handleFilesSelected(arr, item);
+        if (appState.activeModule === "logger") {
+          alert("📸 写真（「" + (item ? item.text.split("\n").join(" ") : "") + "」）を写真帳に登録しました！");
+        }
+      });
+
+      const dropZone = document.getElementById("dropZone");
+      dropZone.addEventListener("dragover", (e) => { e.preventDefault(); dropZone.classList.add("dragover"); });
+      dropZone.addEventListener("dragleave", () => dropZone.classList.remove("dragover"));
+      dropZone.addEventListener("drop", async (e) => {
+        e.preventDefault(); dropZone.classList.remove("dragover");
+        if (e.dataTransfer && e.dataTransfer.files) await handleFilesSelected(Array.from(e.dataTransfer.files), null);
+      });
+
+      document.getElementById("loadSampleBtn").addEventListener("click", async () => {
+        showLoading("サンプル生成中...");
+        const items = getAllFlatItemsForCurrentPurpose().slice(0, 4);
+        for (const it of items) {
+          const c = document.createElement("canvas"); c.width = TARGET_W; c.height = TARGET_H;
+          const ctx = c.getContext("2d"); ctx.fillStyle = "#1e3a8a"; ctx.fillRect(0, 0, TARGET_W, TARGET_H);
+          ctx.fillStyle = "#fff"; ctx.font = "bold 46px sans-serif"; ctx.textAlign = "center";
+          ctx.fillText(it.text.split("\n").join(" "), TARGET_W / 2, TARGET_H / 2);
+          appState.photos.push({ id: "p_" + Date.now() + Math.random(), name: "sample.jpg", rawDataUrl: c.toDataURL("image/jpeg", 0.85), caption: it.text, templateKey: it.text, note: it.note || "", rotation: 0 });
+        }
+        await refreshAllViews(); await saveStateToDB(); hideLoading();
+      });
+
+      document.getElementById("clearAllPhotosBtn").addEventListener("click", async () => {
+        if (appState.photos.length && confirm("すべての写真を削除しますか？")) {
+          appState.photos = []; activePhotoId = null; await refreshAllViews(); await saveStateToDB();
+        }
+      });
+
+      ["projectTitle", "pageOrientation", "layoutMode", "captionStyle", "boxWidthMode"].forEach(id => {
+        document.getElementById(id).addEventListener("change", async (e) => {
+          appState[id] = e.target.value; await refreshAllViews(); saveStateToDB();
+        });
+      });
+      document.getElementById("fontSizeScale").addEventListener("input", async (e) => {
+        appState.fontSizeScale = parseInt(e.target.value, 10) || 100;
+        document.getElementById("fontSizeVal").textContent = "標準 " + appState.fontSizeScale + "%";
+        await refreshAllViews(); saveStateToDB();
+      });
+
+      document.getElementById("addCandidateBtn").addEventListener("click", () => {
+        const inp = document.getElementById("newCandidateInput"), val = inp.value.trim();
+        if (!val) return;
+        const catIdx = parseInt(document.getElementById("newCandidateCatSelect").value, 10) || 0;
+        const targetCat = getCurrentPurposeObj().categories[catIdx];
+        if (targetCat) {
+          targetCat.items.push({ text: val.split(" / ").join("\n") });
+          renderCandidateChips(); refreshAllViews(); saveStateToDB();
+        }
+        inp.value = "";
+      });
+
+      document.getElementById("resetCandidatesBtn").addEventListener("click", () => {
+        if (confirm("現在の用途のキャプション候補を初期値に戻しますか？")) {
+          appState.purposeData[appState.selectedPurpose] = cloneDeep(PURPOSE_PRESETS[appState.selectedPurpose]);
+          renderCandidateChips(); refreshAllViews(); saveStateToDB();
+        }
+      });
+
+      document.getElementById("viewEditBtn").addEventListener("click", () => switchWorkspaceView("edit"));
+      document.getElementById("viewChecklistBtn").addEventListener("click", () => switchWorkspaceView("checklist"));
+      document.getElementById("viewPreviewBtn").addEventListener("click", () => switchWorkspaceView("preview"));
+
+      document.getElementById("exportWordBtn").addEventListener("click", async () => {
+        if (!appState.photos.length) return alert("写真がありません。");
+        showLoading("Word出力中...");
+        for (const p of appState.photos) p.compositeCache = await renderCompositePhotoDataUrl(p);
+        triggerDownload(buildNativeDocxFromPhotos(), sanitizeFilename(appState.projectTitle) + ".docx");
+        hideLoading();
+      });
+
+      document.getElementById("exportPdfBtn").addEventListener("click", async () => {
+        if (!appState.photos.length) return alert("写真がありません。");
+        showLoading("PDF出力中...");
+        const pages = await renderFullA4PagesDataUrls();
+        triggerDownload(buildNativePdfFromPages(pages), sanitizeFilename(appState.projectTitle) + ".pdf");
+        hideLoading();
+      });
+
+      document.getElementById("mobileWordBtn").addEventListener("click", () => document.getElementById("exportWordBtn").click());
+      document.getElementById("mobilePdfBtn").addEventListener("click", () => document.getElementById("exportPdfBtn").click());
+
+      document.getElementById("exportJsonBtn").addEventListener("click", () => {
+        const blob = new Blob([JSON.stringify({ version: 6, exportedAt: new Date().toISOString(), state: appState })], { type: "application/json" });
+        const site = appState.loggerData.fields.siteNo || appState.projectTitle || "地すべり業務データ";
+        triggerDownload(blob, sanitizeFilename(site) + "_backup.json");
+      });
+
+      document.getElementById("importJsonInput").addEventListener("change", (e) => {
+        const file = e.target.files[0]; if (!file) return;
+        const reader = new FileReader();
+        reader.onload = async (ev) => {
+          try {
+            const parsed = JSON.parse(ev.target.result);
+            const st = parsed.state || parsed;
+            if (st) {
+              appState = { ...appState, ...st };
+              syncControlsFromState(); renderCandidateChips(); renderLoggerWorkflow(); renderLoggerTablesAndInputs();
+              await refreshAllViews(); await saveStateToDB();
+              alert("写真およびNetLG-301Nチェックシートの全データを復元しました！");
+            }
+          } catch (err) { alert("読込エラー: " + err.message); }
+          e.target.value = "";
+        };
+        reader.readAsText(file);
+      });
+    });
+  </script>
+</body>
+</html>
